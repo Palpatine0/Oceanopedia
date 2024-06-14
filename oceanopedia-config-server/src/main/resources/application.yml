@@ -1,5 +1,6 @@
 server:
   port: 8764
+
 spring:
   application:
     name: oceanopedia-config-server
@@ -7,15 +8,16 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/Oceanopedia/Zillow.git
+          uri: https://github.com/Palpatine0/Oceanopedia.git
           search-paths:
             - oceanopedia-config
       label: master
+
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8763/eureka/
-#      defaultZone: http://111.231.19.137:8763/eureka/
+  #      defaultZone: http://111.231.19.137:8763/eureka/
   instance:
     prefer-ip-address: true
 
