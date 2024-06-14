@@ -12,7 +12,3 @@ spring:
           search-paths:
             - oceanopedia-config
       label: master
-
-logging:
-  pattern:
-    console: '%d{MM/dd HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'
