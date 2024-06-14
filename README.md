@@ -2,10 +2,8 @@
 
 ## Introduction
 
- 
 ## Features
 
- 
 ## Technologies Used
 
 - `Spring Boot`: Simplifies the bootstrapping and development of new Spring applications.
@@ -13,7 +11,7 @@
   management, and routing.
 - `MongoDB`: NoSQL database used for storing application data.
 - `Redis`: In-memory data structure store, used as a database, cache, and message broker.
-- `Elasticsearch`: Search engine based on the Lucene library, perfect for powerful search functionalities. 
+- `Elasticsearch`: Search engine based on the Lucene library, perfect for powerful search functionalities.
 - `Vue.js` and `Vuetify`: Progressive JavaScript framework and material design component framework used for building the
   admin panel.
 
@@ -63,7 +61,12 @@ mvn clean install
 - **Article:** 9023
 - **Statistics:** 9024
 - **Notification:** 9025
- 
+
+#### Databases
+
+- **MongoDB:** 27018
+- **Redis:** 6380
+
 ## Contributing
 
 We welcome contributions! Any contributions are greatly appreciated.
@@ -93,11 +96,11 @@ This project is distributed under the MIT License. See the LICENSE file for more
 ### Client
 
 <div align="center">
-     
+
 </div>
 
 ### Admin
 
 <div align="center">
-     
+
 </div>
