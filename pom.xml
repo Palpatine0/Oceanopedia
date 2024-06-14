@@ -16,6 +16,8 @@
         <module>oceanopedia-eureka-server</module>
         <module>oceanopedia-config-server</module>
         <module>oceanopedia-gateway-server</module>
+        <module>oceanopedia-multimedia</module>
+        <module>oceanopedia-mongodb-dao</module>
     </modules>
 
 
