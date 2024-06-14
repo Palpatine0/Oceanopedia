@@ -1,5 +1,6 @@
 server:
   port: 8763
+
 spring:
   application:
     name: oceanopedia-eureka-server
@@ -7,6 +8,7 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
+
 eureka:
   client:
     fetch-registry: false

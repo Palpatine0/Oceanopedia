@@ -23,13 +23,6 @@ spring:
     livereload:
       enabled: true
 
-
-eureka:
-  client:
-    service-url:
-      # defaultZone: http://111.231.19.137:8763/eureka/
-      defaultZone: http://localhost:8763/eureka/
-
 management:
   endpoints:
     web:
