@@ -1,0 +1,24 @@
+server:
+  port: 8764
+spring:
+  application:
+    name: oceanopedia-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Palpatine0/Zillow.git
+          search-paths:
+            - oceanopedia-config
+      label: master
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8763/eureka/
+#      defaultZone: http://111.231.19.137:8763/eureka/
+  instance:
+    prefer-ip-address: true
+
+logging:
+  pattern:
+    console: '%d{MM/dd HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'

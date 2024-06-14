@@ -1,0 +1,37 @@
+server:
+  port: 4007
+
+spring:
+  application:
+    name: oceanopedia-gateway-server
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: true
+
+      routes:
+
+    config:
+      uri: http://localhost:8764
+      label: master
+      name: oceanopedia
+      profile: dev
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8763/eureka/
+
+  instance:
+    preferIpAddress: true
+
+oceanopedia:
+  fdfsBasePath:
+    nginx:
+      prefix: http://111.231.19.137:8888/
+
+logging:
+  pattern:
+    console: '%d{MM/dd HH:mm:ss.SSS} %clr(%-5level) ---  [%-15thread] %cyan(%-50logger{50}):%msg%n'
