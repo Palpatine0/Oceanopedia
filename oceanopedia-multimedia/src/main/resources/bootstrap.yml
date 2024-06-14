@@ -1,0 +1,32 @@
+server:
+  port: 9020
+
+spring:
+  application:
+    name: oceanopedia-file
+  profiles:
+    active: mongodb
+  cloud:
+    config:
+      uri: http://localhost:8764
+      label: master
+      name: oceanopedia
+      profile: dev
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 200MB
+      max-request-size: 200MB
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+
+
