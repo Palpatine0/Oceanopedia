@@ -19,6 +19,7 @@
         <module>oceanopedia-multimedia</module>
         <module>oceanopedia-mongodb-dao</module>
         <module>oceanopedia-redis-cache</module>
+        <module>oceanopedia-search</module>
     </modules>
 
 
