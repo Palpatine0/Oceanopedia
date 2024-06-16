@@ -25,26 +25,6 @@ Ensure you have the following installed:
 - Maven 3.6.3
 - Your preferred IDE (IntelliJ IDEA, Eclipse, etc.)
 
-### Installation
-
-1. Clone the repository:
-
-```bash
-git clone git@github.com:Palpatine0/Oceanopedia.git
-```
-
-2. Navigate to the project directory:
-
-```bash
-cd Oceanopedia
-```
-
-3. Build the project with Maven:
-
-```bash
-mvn clean install
-```
-
 ### Application Ports
 
 #### Core Services
@@ -66,6 +46,49 @@ mvn clean install
 
 - **MongoDB:** 27018
 - **Redis:** 6380
+
+### Installation
+
+#### Project Installation
+
+1. Clone the repository:
+
+```bash
+git clone git@github.com:Palpatine0/Oceanopedia.git
+```
+
+2. Navigate to the project directory:
+
+```bash
+cd Oceanopedia
+```
+
+3. Build the project with Maven:
+
+```bash
+mvn clean install
+```
+
+#### MongoDB Deployment (Mac)
+
+1. Create container 
+```bash
+docker run -d -p 27018:27017 --name dev_oceanopedia_svc_mongodb mongo:4.4.19-rc2 --auth
+```
+
+2. Enter MongoDB
+```bash
+docker exec -it dev_oceanopedia_svc_mongodb bash
+mongo
+```
+
+3. Set authentication
+```bash
+use admin
+db.createUser({ user: "root", pwd: "root", roles: [{ role: "root", db: "admin" }] })
+db.auth("root", "root");
+```
+
 
 ## Contributing
 

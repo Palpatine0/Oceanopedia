@@ -79,20 +79,23 @@ const api = {
 
 
     // user
-    sendVerificationCode(params) {
-        return axios.post(base.baseUrl + base.sendVerificationCode, params)
-    },
     login(params) {
-        return axios.post(base.baseUrl + base.login, params);
+        return axios.post(base.baseUrl + base.login, qs.stringify(params));
     },
     register(params) {
-        return axios.post(base.baseUrl + base.register, params);
+        return axios.post(base.baseUrl + base.register, qs.stringify(params));
     },
     deleteUserById(params) {
         return axios.post(base.baseUrl + base.deleteUserById, qs.stringify(params));
     },
     getUser(params) {
         return axios.get(base.baseUrl + base.getUser, params);
+    },
+    getUserByUsername(params) {
+        return axios.get(base.baseUrl + base.getUserByUsername + "?" + qs.stringify(params));
+    },
+    getUserById(params) {
+        return axios.get(base.baseUrl + base.getUserById + "?" + qs.stringify(params));
     },
 
     // order

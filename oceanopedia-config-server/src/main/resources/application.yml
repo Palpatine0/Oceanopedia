@@ -12,3 +12,10 @@ spring:
           search-paths:
             - oceanopedia-config
       label: master
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8763/eureka/
+  instance:
+    prefer-ip-address: true

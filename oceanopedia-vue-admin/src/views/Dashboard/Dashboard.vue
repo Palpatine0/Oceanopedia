@@ -1,7 +1,7 @@
 <template>
-    <v-app style="padding: 20px">
-        <v-subheader as="h1" class="subheading grey--text">Dashboard</v-subheader>
-        <v-container>
+    <v-app :style="{ padding: isUserLoggedIn ? '20px' : '0px', minHeight: '100vh' }">
+        <v-subheader v-if="isUserLoggedIn" as="h1" class="subheading grey--text">Dashboard</v-subheader>
+        <v-container v-if="isUserLoggedIn">
             <v-row style="justify-content: space-between">
                 <v-col cols="2">
                     <v-select v-model="selectedCity" :items="cities" label="Location"></v-select>
@@ -12,7 +12,6 @@
                 </div>
             </v-row>
             <v-row>
-
                 <v-col v-for="(item, index) in searchListData" :key="index" cols="12" lg="4" md="6">
                     <v-card :href="item.link" class="mx-auto" max-width="400">
                         <v-img :src="img_prefix+item.img" class="white--text align-end" height="200px">
@@ -27,7 +26,6 @@
                             </b>
                             <div>{{ item.aptType }}</div>
                         </v-card-text>
-
                         <v-card-actions v-if="false">
                             <v-btn color="orange" text>
                                 Share
@@ -39,12 +37,8 @@
                     </v-card>
                 </v-col>
             </v-row>
-
         </v-container>
-
-        <DashboardAddItem class="mt-5"></DashboardAddItem>
-
-
+        <DashboardAddItem v-if="isUserLoggedIn" class="mt-5"></DashboardAddItem>
     </v-app>
 </template>
 
@@ -58,8 +52,6 @@ export default {
     },
     data() {
         return {
-
-            // page vars
             page: 1,
             pagination: 0,
             totalCount_item: 0,
@@ -82,7 +74,6 @@ export default {
                 console.log(this.searchListData)
             })
         },
-
         getSubAddr(fullAddress) {
             if (!fullAddress) {
                 return "No address available";
@@ -92,21 +83,17 @@ export default {
         },
         getHeadAddr(fullAddress) {
             if (!fullAddress) {
-                return "Unknown Location"; // Default title if none provided
+                return "Unknown Location";
             }
             const parts = fullAddress.split(',');
-            return parts[0]; // Return the first part before the comma
+            return parts[0];
         },
-
     },
-
     mounted() {
         this.adminGetItemByCity();
     },
     computed: {
-        ...mapState(['city']),
-        ...mapState(['cities']),
-        ...mapState(['img_prefix']),
+        ...mapState(['city', 'cities', 'img_prefix', 'userId']),
         selectedCity: {
             get() {
                 console.log("Getting city:", this.$store.state.city);
@@ -117,9 +104,10 @@ export default {
                 this.$store.commit('setCity', value);
                 this.adminGetItemByCity();
             }
+        },
+        isUserLoggedIn() {
+            return this.userId !== '';
         }
-
     }
-
 }
 </script>
