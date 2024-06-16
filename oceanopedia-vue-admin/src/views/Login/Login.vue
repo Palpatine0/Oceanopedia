@@ -12,7 +12,7 @@
 
         <v-container>
             <v-text-field label="Username" placeholder="Username" v-model="username" outlined></v-text-field>
-            <v-text-field label="Password" placeholder="Password" v-model="password" outlined></v-text-field>
+            <v-text-field label="Password" placeholder="Password" v-model="password" outlined type="password"></v-text-field>
             <v-btn color="primary" x-large dark width="100%" @click="login">
                 Sign In
             </v-btn>
@@ -46,7 +46,8 @@ export default {
                     .then(userData => {
                         this.setUserAction({
                             id: userData.data.data.id,
-                            username: userData.data.data.username
+                            username: userData.data.data.username,
+                            avatar: userData.data.data.avatar
                         });
                         this.$router.push({ name: 'Dashboard' });
                     });

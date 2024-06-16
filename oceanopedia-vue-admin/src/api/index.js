@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const api = {
 
-    // file
+    // multimedia
     getBanner() {
         return axios.get(base.baseUrl + base.getBanner)
     },

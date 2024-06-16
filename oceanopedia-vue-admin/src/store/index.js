@@ -29,19 +29,23 @@ export default new Vuex.Store({
         },
         setCity(state, city) {
             state.city = city;
-            localStorage.setItem('city', city); // Save to local storage
+            localStorage.setItem('city', city);
         },
         setUser(state, payload) {
             state.user.id = payload.id;
             state.user.username = payload.username;
-            localStorage.setItem('userId', payload.id); // Save to local storage
-            localStorage.setItem('username', payload.username); // Save to local storage
+            state.user.avatar = payload.avatar;
+            localStorage.setItem('userId', payload.id);
+            localStorage.setItem('username', payload.username);
+            localStorage.setItem('avatar', payload.avatar);
         },
         clearUser(state) {
             state.user.id = '';
             state.user.username = '';
+            state.user.avatar = '';
             localStorage.removeItem('userId');
             localStorage.removeItem('username');
+            localStorage.removeItem('avatarusername');
         }
     },
     actions: {
@@ -52,7 +56,8 @@ export default new Vuex.Store({
             if (localStorage.getItem('userId') && localStorage.getItem('username')) {
                 commit('setUser', {
                     id: localStorage.getItem('userId'),
-                    username: localStorage.getItem('username')
+                    username: localStorage.getItem('username'),
+                    avatar: localStorage.getItem('avatar')
                 });
             }
         },

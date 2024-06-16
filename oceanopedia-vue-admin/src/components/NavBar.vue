@@ -3,7 +3,7 @@
         <v-row class="align-center mt-5">
             <v-col class="mt-5 d-flex flex-column align-center" cols="12">
                 <v-avatar size="100">
-                    <img alt="User Avatar" src="/avatar-1.png">
+                    <img alt="User Avatar" :src="this.img_prefix +user.avatar">
                 </v-avatar>
                 <p class="white--text subheading mt-1">
                     {{ user.username }}
@@ -33,8 +33,7 @@ import {mapState} from 'vuex'
 
 export default {
     data() {
-        return {
-        };
+        return {};
     },
     methods: {
         navigateTo(route) {
@@ -42,7 +41,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['drawer', 'links', 'user']),
+        ...mapState(['drawer', 'links', 'img_prefix', 'user']),
         isUserLoggedIn() {
             return this.user.id !== '';
         },

@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: oceanopedia-file
+    name: oceanopedia-multimedia
   profiles:
     active: mongodb
   cloud:

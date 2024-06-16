@@ -18,8 +18,8 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public OceanopediaResult register(String username, String password, String phone) {
-        return userService.register(username, password, phone);
+    public OceanopediaResult register(String username, String password, String avatar, String type) {
+        return userService.register(username, password, avatar, type);
     }
 
     @PostMapping("/login")

@@ -2,9 +2,9 @@
 const base = {
     baseUrl: "/api",
 
-    // file
-    getBanner: '/file/getBanner',
-    uploadImageNoPrefix: '/file/uploadImageNoPrefix',
+    // multimedia
+    getBanner: '/multimedia/getBanner',
+    uploadImageNoPrefix: '/multimedia/uploadImageNoPrefix',
 
     // trendy
     getTrendy: '/trendy/getTrendy',

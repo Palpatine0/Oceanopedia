@@ -6,7 +6,7 @@
                 <v-col v-for="user in users" :key="user.name" cols="12" lg="3" md="4" sm="6">
                     <v-card class="d-flex flex-column align-center justify-center ma-3" flat>
                         <v-avatar class="grey lighten-2 mt-5" size="100">
-                            <img src="/avatar-1.png">
+                            <v-img :src="img_prefix+user.avatar"></v-img>
                         </v-avatar>
                         <v-card-text class="text-center">
                             <div class="subheading">{{ user.username }}</div>
@@ -25,14 +25,15 @@
                     </v-card>
                 </v-col>
 
-                <v-snackbar v-model="snackbar" :multi-line="true">
-                    Confirm your option.
+
+                <v-snackbar v-model="snackbar" :multi-line="true" color="secondary" >
+                    <span style="color: #2a566b;">Confirm your option.</span>
                     <template v-slot:action="{ attrs }">
                         <v-btn color="red" text v-bind="attrs" @click="snackbar = false,deleteUser()">
                             Confirm
                         </v-btn>
                         <v-btn text v-bind="attrs" @click="snackbar = false">
-                            Cancel
+                            <span style="color: #2a566b;">Cancel</span>
                         </v-btn>
                     </template>
                 </v-snackbar>
@@ -43,6 +44,8 @@
 
 
 <script>
+
+import {mapState} from "vuex";
 
 export default {
     data() {
@@ -76,7 +79,9 @@ export default {
                 this.users = data.data.data
             }
         })
-
+    },
+    computed: {
+        ...mapState(['img_prefix']),
     },
 }
 </script>
