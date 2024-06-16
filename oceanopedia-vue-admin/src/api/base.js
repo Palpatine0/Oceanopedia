@@ -33,12 +33,12 @@ const base = {
     adminSearchByCity: "/search/adminSearchByCity",
 
     // user
-    sendVerificationCode: '/user/sendVerificationCode',
     login: '/user/login',
     register: '/user/register',
     getUser: '/user/getUsers',
     deleteUserById: '/user/deleteUserById',
     getUserByUsername: '/user/getUserByUsername',
+    getUserById: '/user/getUserById',
 
     // buyAction
     buyAction: "/buyAction/buyAction",

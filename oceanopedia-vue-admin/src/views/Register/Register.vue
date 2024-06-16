@@ -1,30 +1,30 @@
 <template>
     <div id="login-container">
-        <router-Link to="/register">
-            <div class="sign_up">
-                Sign Up
+        <router-Link to="/login">
+            <div class="sign_in">
+                Sign In
             </div>
         </router-Link>
 
-        <div class="sign_in">
-            Sign In
+        <div class="sign_up">
+            Sign Up
         </div>
 
         <v-container>
             <v-text-field label="Username" placeholder="Username" v-model="username" outlined></v-text-field>
             <v-text-field label="Password" placeholder="Password" v-model="password" outlined></v-text-field>
-            <v-btn color="primary" x-large dark width="100%" @click="login">
-                Sign In
+            <v-btn color="primary" x-large dark width="100%" @click="register">
+                Sign Up
             </v-btn>
         </v-container>
     </div>
 </template>
 
-<script>
-import {mapActions} from 'vuex'
 
+<script>
 export default {
-    name: 'Login',
+    name: 'Register',
+    components: {},
     data() {
         return {
             username: '',
@@ -32,27 +32,36 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['setUserIdAction']),
-        login() {
-            this.$api.login({
+        register() {
+            this.$api.register({
                 username: this.username,
                 password: this.password
             })
             .then(data => {
                 if (data.data.status == 200) {
-                    this.$api.getUserByUsername({
-                        username: this.username,
-                    })
-                    .then(userData => {
-                        this.setUserIdAction({data: userData.data.data.id});
-                        this.$router.push({ name: 'Dashboard' });
-                    })
                     alert(data.data.msg)
+                    this.$router.push({ name: 'Login' });
                 } else {
                     alert(data.data.msg)
                 }
             })
         },
+
+        uploadImageNoPrefix(file, imgKey) {
+            this.$api.uploadImageNoPrefix({file: file})
+            .then((data) => {
+                console.log(data)
+                if (data.data.status === 200 && data.data.data) {
+                    this.item.imgs[imgKey] = data.data.data;
+                    this.uploadItemShowcases_add_snackbar = true;
+                    this.uploadItemShowcases_add_msg = data.data.msg;
+                } else {
+                    throw new Error('Failed to upload image or bad data received');
+                }
+            })
+
+        },
+
     },
 }
 </script>
@@ -67,18 +76,18 @@ export default {
         font-family: Arial;
     }
 
-    .sign_up {
+    .sign_in {
         position: absolute;
         top: 5px;
         right: 5px;
         float: right;
-        font-weight: bold;
         color: #2a5367;
+        font-weight: bold;
     }
 
-    .sign_in {
+    .sign_up {
         position: relative;
-        width: 118px;
+        width: 134px;
         height: 40px;
         margin: 0 auto;
         margin-bottom: 10px;

@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Dashboard from '../views/Dashboard/Dashboard.vue'
 import Item from '../views/Dashboard/Item/Item.vue'
 import Users from '../views/Users/Users.vue'
-import Register from "@/views/Register/Regiser.vue";
+import Register from "@/views/Register/Register.vue";
 import Login from '../views/Login/Login.vue'
 import store from '../store'
 

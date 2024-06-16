@@ -94,6 +94,9 @@ const api = {
     getUserByUsername(params) {
         return axios.get(base.baseUrl + base.getUserByUsername + "?" + qs.stringify(params));
     },
+    getUserById(params) {
+        return axios.get(base.baseUrl + base.getUserById + "?" + qs.stringify(params));
+    },
 
     // order
     getOrder(params) {

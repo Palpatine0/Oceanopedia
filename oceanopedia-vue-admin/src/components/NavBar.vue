@@ -3,9 +3,11 @@
         <v-row class="align-center mt-5">
             <v-col class="mt-5 d-flex flex-column align-center" cols="12">
                 <v-avatar size="100">
-                    <img alt="Palpatine" src="/avatar-1.png">
+                    <img alt="User Avatar   " src="/avatar-1.png">
                 </v-avatar>
-                <p class="white--text subheading mt-1">Palpatine</p>
+                <p class="white--text subheading mt-1">
+                    Palpatine
+                </p>
             </v-col>
         </v-row>
 
@@ -31,7 +33,8 @@ import {mapState} from 'vuex'
 
 export default {
     data() {
-        return {};
+        return {
+        };
     },
     methods: {
         navigateTo(route) {
@@ -39,10 +42,11 @@ export default {
         }
     },
     computed: {
-        ...mapState(['drawer', 'links', 'userId']),
+        ...mapState(['drawer', 'links']),
+        ...mapState(['userId']),
         isUserLoggedIn() {
             return this.userId !== '';
-        }
+        },
     },
 };
 </script>
