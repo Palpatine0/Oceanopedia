@@ -40,9 +40,9 @@ export default {
         return {}
     },
     computed: {
-        ...mapState(['drawer', 'links', 'userId']),
+        ...mapState(['drawer', 'links', 'user']),
         isUserLoggedIn() {
-            return this.userId !== '';
+            return this.user.id !== '';
         }
     },
     methods: {
@@ -50,8 +50,7 @@ export default {
             this.$store.commit('toggleDrawer');
         },
         signOut() {
-            this.$store.commit('setUserId', { data: '' });
-            localStorage.removeItem('userId');
+            this.$store.dispatch('clearUserAction');
             this.$router.push({ name: 'login' });
         }
     }

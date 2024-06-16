@@ -12,7 +12,7 @@
 
         <v-container>
             <v-text-field label="Username" placeholder="Username" v-model="username" outlined></v-text-field>
-            <v-text-field label="Password" placeholder="Password" v-model="password" outlined></v-text-field>
+            <v-text-field label="Password" placeholder="Password" v-model="password" outlined type="password"></v-text-field>
             <v-btn color="primary" x-large dark width="100%" @click="login">
                 Sign In
             </v-btn>
@@ -32,7 +32,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['setUserIdAction']),
+        ...mapActions(['setUserAction']),
         login() {
             this.$api.login({
                 username: this.username,
@@ -44,19 +44,22 @@ export default {
                         username: this.username,
                     })
                     .then(userData => {
-                        this.setUserIdAction({data: userData.data.data.id});
+                        this.setUserAction({
+                            id: userData.data.data.id,
+                            username: userData.data.data.username,
+                            avatar: userData.data.data.avatar
+                        });
                         this.$router.push({ name: 'Dashboard' });
-                    })
-                    alert(data.data.msg)
+                    });
+                    alert(data.data.msg);
                 } else {
-                    alert(data.data.msg)
+                    alert(data.data.msg);
                 }
             })
         },
     },
 }
 </script>
-
 
 <style scoped>
 #login-container {

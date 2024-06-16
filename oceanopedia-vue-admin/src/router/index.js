@@ -41,14 +41,14 @@ const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
     routes
-})
+});
 
 router.beforeEach((to, from, next) => {
-    if (!store.state.userId && to.name !== 'login' && to.name !== 'register') {
-        next({name: 'login'})
+    if (!store.state.user.id && to.name !== 'login' && to.name !== 'register') {
+        next({ name: 'login' });
     } else {
-        next()
+        next();
     }
-})
+});
 
 export default router

@@ -11,6 +11,16 @@ spring:
           enabled: false
           lower-case-service-id: true
       routes:
+        # multimedia
+        - id: multimedia-getBanners
+          uri: lb://oceanopedia-multimedia
+          predicates:
+            - Path=/multimedia/getBanners
+        - id: multimedia-uploadImageNoPrefix
+          uri: lb://oceanopedia-multimedia
+          predicates:
+            - Path=/multimedia/uploadImageNoPrefix
+
         # user
         - id: user
           uri: lb://oceanopedia-user

@@ -11,7 +11,7 @@ import java.io.IOException;
 
 
 @RestController
-@RequestMapping("/file")
+@RequestMapping("/multimedia")
 public class MultimediaController {
     @Autowired
     private MultimediaService multimediaService;
@@ -47,10 +47,5 @@ public class MultimediaController {
     @DeleteMapping("/delete")
     public OceanopediaResult delete(String filePath) {
         return multimediaService.delete(filePath);
-    }
-
-    @GetMapping("/test")
-    public OceanopediaResult test() {
-        return OceanopediaResult.ok("Test Done");
     }
 }

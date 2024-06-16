@@ -51,22 +51,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public OceanopediaResult register(String username, String password, String phone) {
+    public OceanopediaResult register(String username, String password, String avatar, String type) {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
+        user.setAvatar(avatar);
+        user.setType(type);
         if (username == "") {
             return OceanopediaResult.error("Username cannot be empty");
         } else if (password == "") {
             return OceanopediaResult.error("Password cannot be empty");
         }
-
         User user4Check = userDao.findUserByUsername(username);
         if (user4Check != null) {
             return OceanopediaResult.error("This username had been used");
-        } else {
-            userDao.saveUser(user);
         }
+
+        userDao.saveUser(user);
         OceanopediaResult ok = OceanopediaResult.ok();
         ok.setMsg("Successfully registered");
         return ok;

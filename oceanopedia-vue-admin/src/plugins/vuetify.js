@@ -14,10 +14,8 @@ export default new Vuetify({
         themes: {
             light: {
                 primary: '#2a5367',
-                secondary: '#b0bec5',
+                secondary: '#dee3e6',
                 accent: '#2c3c5d',
-                error: '#b71c1c',
-                // Add your custom colors here
                 background: '#f5f5f5',
             },
         },

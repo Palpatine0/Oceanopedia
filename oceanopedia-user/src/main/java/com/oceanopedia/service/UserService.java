@@ -7,7 +7,7 @@ public interface UserService {
 
     OceanopediaResult login(String username, String password, String phone, String verificationCode);
 
-    OceanopediaResult register(String username, String password, String phone);
+    OceanopediaResult register(String username, String password, String avatar, String type);
 
     OceanopediaResult deleteUserById(String id);
 
