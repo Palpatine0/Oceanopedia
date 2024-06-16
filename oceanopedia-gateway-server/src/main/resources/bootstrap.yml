@@ -10,9 +10,38 @@ spring:
         locator:
           enabled: false
           lower-case-service-id: true
-
       routes:
-
+        # user
+        - id: user
+          uri: lb://oceanopedia-user
+          predicates:
+            - Path=/user/login
+        - id: register
+          uri: lb://oceanopedia-user
+          predicates:
+            - Path=/user/register
+        - id: deleteUserById
+          uri: lb://oceanopedia-user
+          predicates:
+            - Path=/user/deleteUserById
+        - id: sendVerificationCode
+          uri: lb://oceanopedia-user
+          predicates:
+            - Path=/user/sendVerificationCode
+        - id: getUsers
+          uri: lb://oceanopedia-user
+          predicates:
+            - Path=/user/getUsers
+        - id: getUserByUsername
+          uri: lb://oceanopedia-user
+          predicates:
+            - Path=/user/getUserByUsername
+            - Query=username
+        - id: getUserById
+          uri: lb://oceanopedia-user
+          predicates:
+            - Path=/user/getUserById
+            - Query=id
     config:
       uri: http://localhost:8764
       label: master

@@ -35,9 +35,10 @@ const base = {
     // user
     sendVerificationCode: '/user/sendVerificationCode',
     login: '/user/login',
-    register: '/user/Register',
+    register: '/user/register',
     getUser: '/user/getUsers',
     deleteUserById: '/user/deleteUserById',
+    getUserByUsername: '/user/getUserByUsername',
 
     // buyAction
     buyAction: "/buyAction/buyAction",

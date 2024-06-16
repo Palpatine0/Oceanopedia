@@ -47,14 +47,6 @@
             <version>1.26.5</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-            <version>2.6.3</version>
-        </dependency>
-
-
         <!--this project-->
         <dependency>
             <groupId>com.oceanopedia</groupId>

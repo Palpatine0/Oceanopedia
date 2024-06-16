@@ -17,11 +17,6 @@ spring:
       enabled: true
       max-file-size: 200MB
       max-request-size: 200MB
-  devtools:
-    restart:
-      enabled: true
-    livereload:
-      enabled: true
 
 management:
   endpoints:
@@ -29,4 +24,7 @@ management:
       exposure:
         include: refresh
 
-
+oceanopedia:
+  fdfsBasePath:
+    nginx:
+      prefix: http://111.231.19.137:8888/
