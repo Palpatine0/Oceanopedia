@@ -1,4 +1,3 @@
-// store.js
 import Vue from 'vue';
 import Vuex from 'vuex';
 
@@ -19,7 +18,7 @@ export default new Vuex.Store({
             'Cape Coral',
             'Beverly Hills'
         ],
-        userId: '',
+        userId: localStorage.getItem('userId') || '', // Initialize userId from localStorage
     },
     mutations: {
         toggleDrawer(state) {
@@ -30,7 +29,8 @@ export default new Vuex.Store({
             localStorage.setItem('city', city); // Save to local storage
         },
         setUserId(state, payload) {
-            state.userId = payload.data
+            state.userId = payload.data;
+            localStorage.setItem('userId', payload.data); // Save to local storage
         }
     },
     actions: {
@@ -38,9 +38,12 @@ export default new Vuex.Store({
             if (localStorage.getItem('city')) {
                 commit('setCity', localStorage.getItem('city'));
             }
+            if (localStorage.getItem('userId')) {
+                commit('setUserId', {data: localStorage.getItem('userId')});
+            }
         },
         setUserIdAction(context, payload) {
-            context.commit('setUserId', payload)
+            context.commit('setUserId', payload);
         }
     },
     modules: {
