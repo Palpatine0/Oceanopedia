@@ -32,7 +32,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['setUserIdAction']),
+        ...mapActions(['setUserAction']),
         login() {
             this.$api.login({
                 username: this.username,
@@ -44,19 +44,21 @@ export default {
                         username: this.username,
                     })
                     .then(userData => {
-                        this.setUserIdAction({data: userData.data.data.id});
+                        this.setUserAction({
+                            id: userData.data.data.id,
+                            username: userData.data.data.username
+                        });
                         this.$router.push({ name: 'Dashboard' });
-                    })
-                    alert(data.data.msg)
+                    });
+                    alert(data.data.msg);
                 } else {
-                    alert(data.data.msg)
+                    alert(data.data.msg);
                 }
             })
         },
     },
 }
 </script>
-
 
 <style scoped>
 #login-container {

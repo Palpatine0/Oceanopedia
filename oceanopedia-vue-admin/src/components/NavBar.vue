@@ -3,10 +3,10 @@
         <v-row class="align-center mt-5">
             <v-col class="mt-5 d-flex flex-column align-center" cols="12">
                 <v-avatar size="100">
-                    <img alt="User Avatar   " src="/avatar-1.png">
+                    <img alt="User Avatar" src="/avatar-1.png">
                 </v-avatar>
                 <p class="white--text subheading mt-1">
-                    Palpatine
+                    {{ user.username }}
                 </p>
             </v-col>
         </v-row>
@@ -42,10 +42,9 @@ export default {
         }
     },
     computed: {
-        ...mapState(['drawer', 'links']),
-        ...mapState(['userId']),
+        ...mapState(['drawer', 'links', 'user']),
         isUserLoggedIn() {
-            return this.userId !== '';
+            return this.user.id !== '';
         },
     },
 };

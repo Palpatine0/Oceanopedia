@@ -18,7 +18,10 @@ export default new Vuex.Store({
             'Cape Coral',
             'Beverly Hills'
         ],
-        userId: localStorage.getItem('userId') || '', // Initialize userId from localStorage
+        user: {
+            id: localStorage.getItem('userId') || '',
+            username: localStorage.getItem('username') || '',
+        }
     },
     mutations: {
         toggleDrawer(state) {
@@ -28,9 +31,17 @@ export default new Vuex.Store({
             state.city = city;
             localStorage.setItem('city', city); // Save to local storage
         },
-        setUserId(state, payload) {
-            state.userId = payload.data;
-            localStorage.setItem('userId', payload.data); // Save to local storage
+        setUser(state, payload) {
+            state.user.id = payload.id;
+            state.user.username = payload.username;
+            localStorage.setItem('userId', payload.id); // Save to local storage
+            localStorage.setItem('username', payload.username); // Save to local storage
+        },
+        clearUser(state) {
+            state.user.id = '';
+            state.user.username = '';
+            localStorage.removeItem('userId');
+            localStorage.removeItem('username');
         }
     },
     actions: {
@@ -38,12 +49,18 @@ export default new Vuex.Store({
             if (localStorage.getItem('city')) {
                 commit('setCity', localStorage.getItem('city'));
             }
-            if (localStorage.getItem('userId')) {
-                commit('setUserId', {data: localStorage.getItem('userId')});
+            if (localStorage.getItem('userId') && localStorage.getItem('username')) {
+                commit('setUser', {
+                    id: localStorage.getItem('userId'),
+                    username: localStorage.getItem('username')
+                });
             }
         },
-        setUserIdAction(context, payload) {
-            context.commit('setUserId', payload);
+        setUserAction({commit}, payload) {
+            commit('setUser', payload);
+        },
+        clearUserAction({commit}) {
+            commit('clearUser');
         }
     },
     modules: {
