@@ -8,38 +8,30 @@ export default new Vuex.Store({
         drawer: true,
         city: 'Los Angeles',
         img_prefix: 'http://111.231.19.137:8888/',
-        links: [
-            {icon: 'fa-lg fas fa-home', text: 'Dashboard', route: '/'},
-            {icon: 'fa-lg fa-solid fa-user', text: 'Users', route: '/users'},
-            // {icon: 'fa-lg fa-solid fa-flask', text: 'Test', route: '/test'},
+        links: [{icon: 'fa-lg fas fa-home', text: 'Dashboard', route: '/'}, {
+            icon: 'fa-lg fa-solid fa-user',
+            text: 'Users',
+            route: '/users'
+        }, // {icon: 'fa-lg fa-solid fa-flask', text: 'Test', route: '/test'},
         ],
-        cities: [
-            'Dallas',
-            'Cape Coral',
-            'Beverly Hills'
-        ],
+        cities: ['Dallas', 'Cape Coral', 'Beverly Hills'],
         user: {
-            id: localStorage.getItem('userId') || '',
-            username: localStorage.getItem('username') || '',
+            id: localStorage.getItem('userId') || '', username: localStorage.getItem('username') || '',
         }
-    },
-    mutations: {
+    }, mutations: {
         toggleDrawer(state) {
             state.drawer = !state.drawer;
-        },
-        setCity(state, city) {
+        }, setCity(state, city) {
             state.city = city;
             localStorage.setItem('city', city);
-        },
-        setUser(state, payload) {
+        }, setUser(state, payload) {
             state.user.id = payload.id;
             state.user.username = payload.username;
             state.user.avatar = payload.avatar;
             localStorage.setItem('userId', payload.id);
             localStorage.setItem('username', payload.username);
             localStorage.setItem('avatar', payload.avatar);
-        },
-        clearUser(state) {
+        }, clearUser(state) {
             state.user.id = '';
             state.user.username = '';
             state.user.avatar = '';
@@ -47,8 +39,7 @@ export default new Vuex.Store({
             localStorage.removeItem('username');
             localStorage.removeItem('avatarusername');
         }
-    },
-    actions: {
+    }, actions: {
         initializeStore({commit}) {
             if (localStorage.getItem('city')) {
                 commit('setCity', localStorage.getItem('city'));
@@ -60,15 +51,12 @@ export default new Vuex.Store({
                     avatar: localStorage.getItem('avatar')
                 });
             }
-        },
-        setUserAction({commit}, payload) {
+        }, setUserAction({commit}, payload) {
             commit('setUser', payload);
-        },
-        clearUserAction({commit}) {
+        }, clearUserAction({commit}) {
             commit('clearUser');
         }
-    },
-    modules: {
+    }, modules: {
         // You can define modules here if needed
     }
 });

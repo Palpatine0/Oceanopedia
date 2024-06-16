@@ -12,10 +12,12 @@ public interface UserDao {
 
     void removeUserById(String id);
 
-    List<User> findUsers(Query query);
+    List<User> findUsers(int page, int rows);
 
     User findUserByUsername(String username);
 
     User findUserById(String id);
+
+    int countUser();
 
 }

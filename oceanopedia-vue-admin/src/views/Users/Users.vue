@@ -2,8 +2,13 @@
     <v-app style="padding: 20px">
         <v-subheader as="h1" class="subheading grey--text">Users</v-subheader>
         <v-container class="my-5">
+            <v-row style="justify-content: right">
+                <div>
+                    <v-pagination v-model="page" :length="pagination" class="float-right" color="#156ff6" @input="getUsers"></v-pagination>
+                </div>
+            </v-row>
             <v-row>
-                <v-col v-for="user in users" :key="user.name" cols="12" lg="3" md="4" sm="6">
+                <v-col v-for="user in users" :key="user.id" cols="12" lg="3" md="4" sm="6">
                     <v-card class="d-flex flex-column align-center justify-center ma-3" flat>
                         <v-avatar class="grey lighten-2 mt-5" size="100">
                             <v-img :src="img_prefix+user.avatar"></v-img>
@@ -24,24 +29,23 @@
                         </v-card-actions>
                     </v-card>
                 </v-col>
-
-
-                <v-snackbar v-model="snackbar" :multi-line="true" color="secondary" >
-                    <span style="color: #2a566b;">Confirm your option.</span>
-                    <template v-slot:action="{ attrs }">
-                        <v-btn color="red" text v-bind="attrs" @click="snackbar = false,deleteUser()">
-                            Confirm
-                        </v-btn>
-                        <v-btn text v-bind="attrs" @click="snackbar = false">
-                            <span style="color: #2a566b;">Cancel</span>
-                        </v-btn>
-                    </template>
-                </v-snackbar>
             </v-row>
         </v-container>
+
+        <!--Snackbars-->
+        <v-snackbar v-model="snackbar" :multi-line="true" color="secondary">
+            <span style="color: #2a566b;">Confirm your option.</span>
+            <template v-slot:action="{ attrs }">
+                <v-btn color="red" text v-bind="attrs" @click="snackbar = false,deleteUser()">
+                    Confirm
+                </v-btn>
+                <v-btn text v-bind="attrs" @click="snackbar = false">
+                    <span style="color: #2a566b;">Cancel</span>
+                </v-btn>
+            </template>
+        </v-snackbar>
     </v-app>
 </template>
-
 
 <script>
 
@@ -50,12 +54,28 @@ import {mapState} from "vuex";
 export default {
     data() {
         return {
-            users: [],
             snackbar: false,
-            userId_delete: ''
+            userId_delete: '',
+            page: 1,
+            pagination: 0,
+            totalCountItem: 0,
+            users: [],
         }
     },
     methods: {
+        getUsers() {
+            this.$api.getUsers({
+                page: this.page - 1,
+                rows: 8
+            })
+            .then(data => {
+                console.log("data")
+                console.log(data.data.cnt)
+                this.users = data.data.data
+                this.totalCountItem = data.data.cnt
+                this.pagination = Math.ceil(this.totalCountItem / 8)
+            })
+        },
         setDeleteId(id) {
             this.userId_delete = id;
         },
@@ -65,7 +85,6 @@ export default {
                 id: this.userId_delete
             })
             .then(data => {
-                console.log(data.status)
                 if (data.status == 200) {
                     window.location.reload();
                 }
@@ -73,21 +92,16 @@ export default {
         }
     },
     mounted() {
-        this.$api.getUser()
-        .then(data => {
-            if (data.data.status) {
-                this.users = data.data.data
-            }
-        })
+        this.getUsers()
     },
     computed: {
         ...mapState(['img_prefix']),
     },
 }
 </script>
+
 <style>
 * {
-//outline: 1px solid red;
+    /* outline: 1px solid red; */
 }
-
 </style>

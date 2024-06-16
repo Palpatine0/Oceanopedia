@@ -43,9 +43,19 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> findUsers(Query query) {
+    public int countUser() {
+        Query query = new Query();
+        return (int) mongoTemplate.count(query, User.class);
+    }
+
+    @Override
+    public List<User> findUsers(int page, int rows) {
+        Query query = new Query();
+        query.skip((long) page * rows);
+        query.limit(rows);
         return mongoTemplate.find(query, User.class);
     }
+
 
 
 }

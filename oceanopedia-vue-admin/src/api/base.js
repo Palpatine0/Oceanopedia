@@ -35,7 +35,7 @@ const base = {
     // user
     login: '/user/login',
     register: '/user/register',
-    getUser: '/user/getUsers',
+    getUsers: '/user/getUsers',
     deleteUserById: '/user/deleteUserById',
     getUserByUsername: '/user/getUserByUsername',
     getUserById: '/user/getUserById',

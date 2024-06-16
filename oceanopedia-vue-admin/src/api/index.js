@@ -88,8 +88,8 @@ const api = {
     deleteUserById(params) {
         return axios.post(base.baseUrl + base.deleteUserById, qs.stringify(params));
     },
-    getUser(params) {
-        return axios.get(base.baseUrl + base.getUser, params);
+    getUsers(params) {
+        return axios.get(base.baseUrl + base.getUsers+ "?" + qs.stringify(params));
     },
     getUserByUsername(params) {
         return axios.get(base.baseUrl + base.getUserByUsername + "?" + qs.stringify(params));

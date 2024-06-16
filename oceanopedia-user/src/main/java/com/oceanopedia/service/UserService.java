@@ -11,7 +11,7 @@ public interface UserService {
 
     OceanopediaResult deleteUserById(String id);
 
-    OceanopediaResult getUsers();
+    OceanopediaResult getUsers(int page, int rows);
 
     OceanopediaResult getUserByUsername(String username);
 
