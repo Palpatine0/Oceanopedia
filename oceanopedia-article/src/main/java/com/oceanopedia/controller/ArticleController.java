@@ -27,7 +27,7 @@ public class ArticleController {
     }
 
     @GetMapping("/getArticlesByCategory")
-    public OceanopediaResult getArticlesByCategory(String category, int page, @RequestParam(defaultValue = "5") int rows) {
+    public OceanopediaResult getArticlesByCategory(String category, int page, @RequestParam(defaultValue = "3") int rows) {
         return articleService.getArticlesByCategory(category, page, rows);
     }
 

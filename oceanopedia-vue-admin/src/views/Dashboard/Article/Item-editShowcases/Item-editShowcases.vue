@@ -77,7 +77,7 @@ export default {
       console.log(this.imgs.img1)
       console.log(this.imgs.img2)
       console.log(this.imgs.img3)
-      this.$api.updateItemShowcasesById({
+      this.$api.updateArticleCoverImageById({
         id: this.itemInfo.id,
         img1: this.imgs.img1,
         img2: this.imgs.img2,

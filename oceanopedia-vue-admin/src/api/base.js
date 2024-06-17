@@ -12,14 +12,14 @@ const base = {
     // recommendation
     getRecommendation: "/recommendation/getRecommendation",
 
-    //item
-    getItemByID: '/item/getItemByID',
-    addItem: '/item/addItem',
-    deleteItemByID: '/item/deleteItemByID',
-    getItemsByCity: '/item/getItemsByCity',
-    updateItemStatusById: '/item/updateItemStatusById',
-    updateItemInfoById: '/item/updateItemInfoById',
-    updateItemShowcasesById: '/item/updateItemShowcasesById',
+    //article
+    getArticleByID: '/article/getArticleByID',
+    addArticle: '/article/addArticle',
+    deleteArticleByID: '/article/deleteArticleByID',
+    getArticlesByCategory: '/article/getArticlesByCategory',
+    updateArticleStatusById: '/article/updateArticleStatusById',
+    updateArticleInfoById: '/article/updateArticleInfoById',
+    updateArticleCoverImageById: '/article/updateArticleCoverImageById',
 
 
     // comment

@@ -52,6 +52,38 @@ spring:
           predicates:
             - Path=/user/getUserById
             - Query=id
+        
+        # article
+        - id: article-getArticleByID
+          uri: lb://oceanopedia-article
+          predicates:
+            - Path=/article/getArticleByID
+            - Query=id
+        - id: article-addArticle
+          uri: lb://oceanopedia-article
+          predicates:
+            - Path=/article/addArticle
+        - id: article-deleteArticleByID
+          uri: lb://oceanopedia-article
+          predicates:
+            - Path=/article/deleteArticleByID
+        - id: article-getArticlesByCategory
+          uri: lb://oceanopedia-article
+          predicates:
+            - Path=/article/getArticlesByCategory
+        - id: article-updateArticleStatusById
+          uri: lb://oceanopedia-article
+          predicates:
+            - Path=/article/updateArticleStatusById
+        - id: article-updateArticleInfoById
+          uri: lb://oceanopedia-article
+          predicates:
+            - Path=/article/updateArticleInfoById
+        - id: article-updateArticleCoverImageById
+          uri: lb://oceanopedia-article
+          predicates:
+            - Path=/article/updateArticleCoverImageById
+                    
     config:
       uri: http://localhost:8764
       label: master

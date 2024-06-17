@@ -44,4 +44,7 @@ public class Article {
         return "/article/" + id;
     }
 
+    public void setLink(String link) {
+    }
+
 }

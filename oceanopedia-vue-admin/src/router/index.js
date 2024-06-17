@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Dashboard from '../views/Dashboard/Dashboard.vue'
-import Item from '../views/Dashboard/Item/Item.vue'
+import Article from '../views/Dashboard/Article/Article.vue'
 import Users from '../views/Users/Users.vue'
 import Register from "@/views/Register/Register.vue";
 import Login from '../views/Login/Login.vue'
@@ -16,9 +16,9 @@ const routes = [
         component: Dashboard
     },
     {
-        path: '/item/:id',
+        path: '/article/:id',
         name: 'Details',
-        component: Item
+        component: Article
     },
     {
         path: '/users',

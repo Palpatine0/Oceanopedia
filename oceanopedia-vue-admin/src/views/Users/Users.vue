@@ -4,12 +4,12 @@
         <v-container class="my-5">
             <v-row style="justify-content: right">
                 <div>
-                    <v-pagination v-model="page" :length="pagination" class="float-right" color="#156ff6" @input="getUsers"></v-pagination>
+                    <v-pagination v-model="page" :length="pagination" class="float-right" color="primary" @input="getUsers"></v-pagination>
                 </div>
             </v-row>
             <v-row>
                 <v-col v-for="user in users" :key="user.id" cols="12" lg="3" md="4" sm="6">
-                    <v-card class="d-flex flex-column align-center justify-center ma-3" flat>
+                    <v-card class="d-flex flex-column align-center justify-center ma-3" >
                         <v-avatar class="grey lighten-2 mt-5" size="100">
                             <v-img :src="img_prefix+user.avatar"></v-img>
                         </v-avatar>
