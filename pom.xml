@@ -21,6 +21,7 @@
         <module>oceanopedia-redis-cache</module>
         <module>oceanopedia-search</module>
         <module>oceanopedia-user</module>
+        <module>oceanopedia-article</module>
     </modules>
 
 

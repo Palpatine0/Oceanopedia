@@ -1,0 +1,76 @@
+server:
+  port: 9023
+  
+spring:
+  application:
+    name: oceanopedia-article
+  profiles:
+    active: bannerNginx,mongodb,redis, fdfsBasePathNginx
+  cloud:
+    config:
+      uri: http://localhost:8764
+      label: master
+      name: oceanopedia
+      profile: dev
+
+logging:
+  pattern:
+    # Resilience4j config
+    resilience4j.circuitbreaker:
+      configs:
+        default:
+          registerHealthIndicator: true
+          slidingWindowSize: 10
+          # do no decision if there is no even 5 calls
+          minimumNumberOfCalls: 5
+          permittedNumberOfCallsInHalfOpenState: 3
+          # true: auto transfer to half open, no trigger
+          # false: auto transfer to half open only when triggered
+          automaticTransitionFromOpenToHalfOpenEnabled: true
+          waitDurationInOpenState: 5s
+          failureRateThreshold: 50
+          eventConsumerBufferSize: 10
+          recordExceptions:
+            - org.springframework.web.client.HttpServerErrorException
+            - java.util.concurrent.TimeoutException
+            - java.io.IOException
+          ignoreExceptions:
+          # - com.oceanopedia.detail.exception.BusinessException
+
+        shared:
+          slidingWindowSize: 100
+          permittedNumberOfCallsInHalfOpenState: 30
+          waitDurationInOpenState: 1s
+          failureRateThreshold: 50
+          eventConsumerBufferSize: 10
+          ignoreExceptions:
+          # - com.example.detail.exception.BusinessException
+      instances:
+        backendA:
+          baseConfig: default
+        backendB:
+          registerHealthIndicator: true
+          slidingWindowSize: 10
+          minimumNumberOfCalls: 10
+          permittedNumberOfCallsInHalfOpenState: 3
+          waitDurationInOpenState: 5s
+          failureRateThreshold: 50
+          eventConsumerBufferSize: 10
+          # recordFailurePredicate: com.oceanopedia.detail.exception.RecordFailurePredicate
+    # Rate limiter
+    resilience4j.ratelimiter:
+      configs:
+        default:
+          registerHealthIndicator: false
+          limitForPeriod: 1
+          limitRefreshPeriod: 1s
+          timeoutDuration: 0
+          eventConsumerBufferSize: 100
+      instances:
+        backendA:
+          baseConfig: default
+        backendB:
+          limitForPeriod: 1
+          limitRefreshPeriod: 1s
+          timeoutDuration: 3s
+
