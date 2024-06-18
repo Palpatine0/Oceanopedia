@@ -6,7 +6,7 @@
                 <v-col cols="2">
                     <v-select v-model="selectedCategory" :items="categories" label="Category"></v-select>
                 </v-col>
-                <DashboardAddItem v-if="isUserLoggedIn" class="mt-5"></DashboardAddItem>
+                <AddArticle_Model v-if="isUserLoggedIn" class="mt-5"></AddArticle_Model>
                 <div class="mt-5">
                     <v-pagination v-model="page" :length="pagination" class="float-right" color="primary" @input="getArticlesByCity"></v-pagination>
                 </div>
@@ -61,11 +61,11 @@
 
 <script>
 import { mapState } from "vuex";
-import DashboardAddItem from "@/views/Dashboard/Dashboard-AddArticle/Dashboard-AddArticle.vue";
+import AddArticle_Model from "@/views/Dashboard/AddArticle-Model/AddArticle-Model.vue";
 
 export default {
     components: {
-        DashboardAddItem
+        AddArticle_Model
     },
     data() {
         return {

@@ -58,11 +58,11 @@
                 </v-dialog>
             </v-row>
         </v-container>
-        <v-snackbar v-model="addItem_snackbar" :timeout="2000">
-            {{ addItem_msg }}
+        <v-snackbar v-model="addArticle_snackbar" :timeout="2000">
+            {{ Article_msg }}
         </v-snackbar>
-        <v-snackbar v-model="uploadItemShowcases_add_snackbar" :timeout="2000">
-            {{ uploadItemShowcases_add_msg }}
+        <v-snackbar v-model="uploadArticleImage_snackbar" :timeout="2000">
+            {{ uploadArticleImage_msg }}
         </v-snackbar>
     </div>
 </template>
@@ -87,11 +87,11 @@ export default {
                 tags: []
             },
             // page vars
-            uploadItemShowcases_add_msg: '',
-            uploadItemShowcases_add_snackbar: false,
+            uploadArticleImage_msg: '',
+            uploadArticleImage_snackbar: false,
             addItem_dialog: false,
-            addItem_msg: '',
-            addItem_snackbar: false
+            Article_msg: '',
+            addArticle_snackbar: false
         }
     },
     methods: {
@@ -116,8 +116,8 @@ export default {
                 console.log(data)
                 if (data.data.status == 200) {
                     this.addItem_dialog = false;
-                    this.addItem_msg = data.data.data;
-                    this.addItem_snackbar = true
+                    this.Article_msg = data.data.data;
+                    this.addArticle_snackbar = true
                 }
             })
         },
@@ -126,8 +126,8 @@ export default {
             .then((data) => {
                 if (data.data.status === 200 && data.data.data) {
                     this.item.coverImage = data.data.data;
-                    this.uploadItemShowcases_add_snackbar = true;
-                    this.uploadItemShowcases_add_msg = data.data.msg;
+                    this.uploadArticleImage_snackbar = true;
+                    this.uploadArticleImage_msg = data.data.msg;
                 } else {
                     throw new Error('Failed to upload image or bad data received');
                 }

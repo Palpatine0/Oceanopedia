@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer :value="drawer && isUserLoggedIn" app dark style="background: #2a5367;" width="300">
+    <v-navigation-drawer :value="drawer && isUserLoggedIn" app dark color="primary" width="300">
         <v-row class="align-center mt-5">
             <v-col class="mt-5 d-flex flex-column align-center" cols="12">
                 <v-avatar size="100">
