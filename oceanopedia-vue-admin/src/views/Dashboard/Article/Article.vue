@@ -151,9 +151,9 @@
 
 <script>
 import Swiper from "@/components/Swiper.vue";
-import ItemEditStatus from "@/views/Dashboard/Item/Item-editStatus/Item-editStatus.vue";
-import ItemEditInfo from "@/views/Dashboard/Item/Item-editInfo/Item-editInfo.vue";
-import ItemEditShowcases from "@/views/Dashboard/Item/Item-editShowcases/Item-editShowcases.vue";
+import ItemEditStatus from "@/views/Dashboard/Article/Item-editStatus/Item-editStatus.vue";
+import ItemEditInfo from "@/views/Dashboard/Article/Item-editInfo/Item-editInfo.vue";
+import ItemEditShowcases from "@/views/Dashboard/Article/Item-editShowcases/Item-editShowcases.vue";
 import {mapState} from "vuex";
 
 export default {
@@ -182,7 +182,7 @@ export default {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         },
         deleteItemByID() {
-            this.$api.deleteItemByID({id: this.$route.params.id})
+            this.$api.deleteArticleByID({id: this.$route.params.id})
             .then(data => {
                 if (data.data.status == 200) {
                     window.history.back();
@@ -191,7 +191,7 @@ export default {
         }
     },
     mounted() {
-        this.$api.getItemByID({id: this.$route.params.id})
+        this.$api.getArticleByID({id: this.$route.params.id})
         .then(data => {
             this.swiperSlides = data.data.imgs;
             this.itemInfo = data.data;
@@ -199,7 +199,7 @@ export default {
         });
     },
     computed: {
-        ...mapState(['city']),
+        ...mapState(['category']),
     }
 
 }

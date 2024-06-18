@@ -86,12 +86,13 @@ public class UserServiceImpl implements UserService {
         return ok;
     }
 
-
     @Override
-    public OceanopediaResult getUsers() {
-        Query query = new Query();
-        List<User> users = userDao.findUsers(query);
-        return OceanopediaResult.ok(users);
+    public OceanopediaResult getUsers(int page, int rows) {
+        List<User> usersList = userDao.findUsers(page, rows);
+        OceanopediaResult ok = new OceanopediaResult();
+        ok.setCnt(userDao.countUser());
+        ok.setData(usersList);
+        return ok;
     }
 
     @Override

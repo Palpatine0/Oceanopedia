@@ -6,30 +6,25 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         drawer: true,
-        city: 'Los Angeles',
+        category: 'Ocean Life',
         img_prefix: 'http://111.231.19.137:8888/',
-        links: [
-            {icon: 'fa-lg fas fa-home', text: 'Dashboard', route: '/'},
-            {icon: 'fa-lg fa-solid fa-user', text: 'Users', route: '/users'},
-            // {icon: 'fa-lg fa-solid fa-flask', text: 'Test', route: '/test'},
+        links: [{icon: 'fa-lg fas fa-home', text: 'Dashboard', route: '/'}, {
+            icon: 'fa-lg fa-solid fa-user',
+            text: 'Users',
+            route: '/users'
+        }, // {icon: 'fa-lg fa-solid fa-flask', text: 'Test', route: '/test'},
         ],
-        cities: [
-            'Dallas',
-            'Cape Coral',
-            'Beverly Hills'
-        ],
+        categories: ['Ocean Life', 'Ecosystems', 'Planet Ocean'],
         user: {
-            id: localStorage.getItem('userId') || '',
-            username: localStorage.getItem('username') || '',
+            id: localStorage.getItem('userId') || '', username: localStorage.getItem('username') || '',
         }
-    },
-    mutations: {
+    }, mutations: {
         toggleDrawer(state) {
             state.drawer = !state.drawer;
         },
-        setCity(state, city) {
-            state.city = city;
-            localStorage.setItem('city', city);
+        setCategory(state, category) {
+            state.category = category;
+            localStorage.setItem('category', category);
         },
         setUser(state, payload) {
             state.user.id = payload.id;
@@ -47,11 +42,10 @@ export default new Vuex.Store({
             localStorage.removeItem('username');
             localStorage.removeItem('avatarusername');
         }
-    },
-    actions: {
+    }, actions: {
         initializeStore({commit}) {
-            if (localStorage.getItem('city')) {
-                commit('setCity', localStorage.getItem('city'));
+            if (localStorage.getItem('category')) {
+                commit('setCategory', localStorage.getItem('category'));
             }
             if (localStorage.getItem('userId') && localStorage.getItem('username')) {
                 commit('setUser', {
@@ -60,15 +54,12 @@ export default new Vuex.Store({
                     avatar: localStorage.getItem('avatar')
                 });
             }
-        },
-        setUserAction({commit}, payload) {
+        }, setUserAction({commit}, payload) {
             commit('setUser', payload);
-        },
-        clearUserAction({commit}) {
+        }, clearUserAction({commit}) {
             commit('clearUser');
         }
-    },
-    modules: {
+    }, modules: {
         // You can define modules here if needed
     }
 });

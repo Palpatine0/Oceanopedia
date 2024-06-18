@@ -6,10 +6,7 @@ import com.oceanopedia.vo.OceanopediaResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -27,19 +24,18 @@ public class UserController {
         return userService.login(username, password, phone, verificationCode);
     }
 
+    @GetMapping("/getUsers")
+    public OceanopediaResult getUsers(int page, @RequestParam(defaultValue = "8") int rows) {
+        return userService.getUsers(page, rows);
+    }
+
     @PostMapping("/deleteUserById")
     public OceanopediaResult deleteUserById(String id) {
         return userService.deleteUserById(id);
     }
 
-    @GetMapping("/getUsers")
-    public OceanopediaResult getUsers() {
-        return userService.getUsers();
-    }
-
-
     @GetMapping("/getLoggedInUser")
-    public UserDetails getCurrentUser(@AuthenticationPrincipal UserDetails userDetails) {
+    public UserDetails getLoggedInUser(@AuthenticationPrincipal UserDetails userDetails) {
         return userDetails;
     }
 

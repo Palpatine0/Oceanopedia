@@ -46,26 +46,26 @@ const api = {
     },
 
     // item
-    getItemByID(params) {
-        return axios.get(base.baseUrl + base.getItemByID + "?" + qs.stringify(params));
+    getArticleByID(params) {
+        return axios.get(base.baseUrl + base.getArticleByID + "?" + qs.stringify(params));
     },
-    addItem(params) {
-        return axios.post(base.baseUrl + base.addItem, qs.stringify(params));
+    addArticle(params) {
+        return axios.post(base.baseUrl + base.addArticle, qs.stringify(params));
     },
-    deleteItemByID(params) {
-        return axios.delete(base.baseUrl + base.deleteItemByID + "?" + qs.stringify(params));
+    deleteArticleByID(params) {
+        return axios.delete(base.baseUrl + base.deleteArticleByID + "?" + qs.stringify(params));
     },
-    getItemsByCity(params) {
-        return axios.get(base.baseUrl + base.getItemsByCity + "?" + qs.stringify(params));
+    getArticlesByCategory(params) {
+        return axios.get(base.baseUrl + base.getArticlesByCategory + "?" + qs.stringify(params));
     },
-    updateItemStatusById(params) {
-        return axios.post(base.baseUrl + base.updateItemStatusById + "?" + qs.stringify(params));
+    updateArticleStatusById(params) {
+        return axios.post(base.baseUrl + base.updateArticleStatusById + "?" + qs.stringify(params));
     },
-    updateItemInfoById(params) {
-        return axios.post(base.baseUrl + base.updateItemInfoById + "?" + qs.stringify(params));
+    updateArticleInfoById(params) {
+        return axios.post(base.baseUrl + base.updateArticleInfoById + "?" + qs.stringify(params));
     },
-    updateItemShowcasesById(params) {
-        return axios.post(base.baseUrl + base.updateItemShowcasesById + "?" + qs.stringify(params));
+    updateArticleCoverImageById(params) {
+        return axios.post(base.baseUrl + base.updateArticleCoverImageById + "?" + qs.stringify(params));
     },
 
 
@@ -88,8 +88,8 @@ const api = {
     deleteUserById(params) {
         return axios.post(base.baseUrl + base.deleteUserById, qs.stringify(params));
     },
-    getUser(params) {
-        return axios.get(base.baseUrl + base.getUser, params);
+    getUsers(params) {
+        return axios.get(base.baseUrl + base.getUsers+ "?" + qs.stringify(params));
     },
     getUserByUsername(params) {
         return axios.get(base.baseUrl + base.getUserByUsername + "?" + qs.stringify(params));

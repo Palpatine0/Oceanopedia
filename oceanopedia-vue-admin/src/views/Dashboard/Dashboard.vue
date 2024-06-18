@@ -4,47 +4,64 @@
         <v-container v-if="isUserLoggedIn">
             <v-row style="justify-content: space-between">
                 <v-col cols="2">
-                    <v-select v-model="selectedCity" :items="cities" label="Location"></v-select>
+                    <v-select v-model="selectedCategory" :items="categories" label="Category"></v-select>
                 </v-col>
+                <DashboardAddItem v-if="isUserLoggedIn" class="mt-5"></DashboardAddItem>
                 <div class="mt-5">
-                    <v-pagination v-model="page" :length="pagination" class="float-right" color="#156ff6"
-                                  @input="adminGetItemByCity"></v-pagination>
+                    <v-pagination v-model="page" :length="pagination" class="float-right" color="primary" @input="getArticlesByCity"></v-pagination>
                 </div>
             </v-row>
             <v-row>
-                <v-col v-for="(item, index) in searchListData" :key="index" cols="12" lg="4" md="6">
-                    <v-card :href="item.link" class="mx-auto" max-width="400">
-                        <v-img :src="img_prefix+item.img" class="white--text align-end" height="200px">
-                            <v-card-title>{{ getHeadAddr(item.title) }}</v-card-title>
-                        </v-img>
-                        <v-card-subtitle class="pb-0">
-                            {{ getSubAddr(item.title) }}
+                <v-col v-for="(item, index) in articleList" :key="index" cols="12" lg="4" md="6">
+                    <v-card class="mx-auto" max-width="400">
+                        <v-img :src="img_prefix + item.coverImage" class="white--text align-end" height="200px"></v-img>
+                        <v-card-title class="pb-0 mb-3">
+                            {{ item.title }}
+                        </v-card-title>
+                        <v-card-subtitle class="pb-0 mb-3">
+                            {{ item.author }}
                         </v-card-subtitle>
-                        <v-card-text class="text--primary">
-                            <b>
-                                <div>{{ item.rentType }}</div>
-                            </b>
-                            <div>{{ item.aptType }}</div>
+                        <v-card-text>
+                            <v-row align="center" class="mx-0">
+                                <v-rating :value="calculateRating(item)" color="amber" dense half-increments readonly size="14"></v-rating>
+                                <div class="grey--text ms-4">
+                                    {{ calculateRating(item).toFixed(2) }} ({{ item.views }})
+                                </div>
+                            </v-row>
                         </v-card-text>
-                        <v-card-actions v-if="false">
-                            <v-btn color="orange" text>
-                                Share
-                            </v-btn>
-                            <v-btn color="orange" text>
+                        <v-divider class="mx-4 mt-2"></v-divider>
+
+                        <v-card-actions>
+                            <v-btn color="primary lighten-2" text :href="item.link">
                                 Explore
                             </v-btn>
+                            <v-spacer></v-spacer>
+                            <v-btn icon @click="toggleShow(index)">
+                                <v-icon>{{ showStates[index] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                            </v-btn>
                         </v-card-actions>
+
+                        <v-expand-transition>
+                            <div v-show="showStates[index]">
+                                <v-divider></v-divider>
+                                <v-card-text>
+                                    <div style="font-weight: bold" class="my-4 text-subtitle-1">
+                                        Summary
+                                    </div>
+                                    {{ item.summary}}
+                                </v-card-text>
+                            </div>
+                        </v-expand-transition>
                     </v-card>
                 </v-col>
             </v-row>
         </v-container>
-        <DashboardAddItem v-if="isUserLoggedIn" class="mt-5"></DashboardAddItem>
     </v-app>
 </template>
 
 <script>
-import {mapState} from "vuex";
-import DashboardAddItem from "@/views/Dashboard/Dashboard-AddItem/Dashboard-AddItem.vue";
+import { mapState } from "vuex";
+import DashboardAddItem from "@/views/Dashboard/Dashboard-AddArticle/Dashboard-AddArticle.vue";
 
 export default {
     components: {
@@ -55,54 +72,55 @@ export default {
             page: 1,
             pagination: 0,
             totalCount_item: 0,
-            searchListData: [],
+            articleList: [],
+            showStates: {}
         }
     },
     methods: {
-        adminGetItemByCity() {
-            this.$api.getItemsByCity({
-                city: this.selectedCity,
+        getArticlesByCity() {
+            this.$api.getArticlesByCategory({
+                category: this.selectedCategory,
                 page: this.page - 1,
-                rows: 6
+                rows: 3
             })
             .then((data) => {
-                this.searchListData = []
+                this.articleList = []
                 this.totalCount_item = data.data.cnt
-                this.pagination = Math.ceil(this.totalCount_item / 6);
-                this.searchListData = this.searchListData.concat(data.data.data)
-                console.log("this.searchListData")
-                console.log(this.searchListData)
+                this.pagination = Math.ceil(this.totalCount_item / 3);
+                this.articleList = this.articleList.concat(data.data.data)
+                this.initializeShowStates();
+                console.log("this.articleList")
+                console.log(this.articleList)
             })
         },
-        getSubAddr(fullAddress) {
-            if (!fullAddress) {
-                return "No address available";
-            }
-            const parts = fullAddress.split(',');
-            return parts.length > 1 ? parts.slice(1).join(',').trim() : fullAddress;
+        toggleShow(index) {
+            this.$set(this.showStates, index, !this.showStates[index]);
         },
-        getHeadAddr(fullAddress) {
-            if (!fullAddress) {
-                return "Unknown Location";
-            }
-            const parts = fullAddress.split(',');
-            return parts[0];
+        initializeShowStates() {
+            this.showStates = {};
+            this.articleList.forEach((item, index) => {
+                this.$set(this.showStates, index, true);
+            });
         },
+        calculateRating(item) {
+            if (item.views === 0) {
+                return 0;
+            }
+            return (item.likes / item.views) * 5;
+        }
     },
     mounted() {
-        this.adminGetItemByCity();
+        this.getArticlesByCity();
     },
     computed: {
-        ...mapState(['city', 'cities', 'img_prefix', 'userId']),
-        selectedCity: {
+        ...mapState(['category', 'categories', 'img_prefix', 'userId']),
+        selectedCategory: {
             get() {
-                console.log("Getting city:", this.$store.state.city);
-                return this.$store.state.city;
+                return this.$store.state.category;
             },
             set(value) {
-                console.log("Setting city to:", value);
-                this.$store.commit('setCity', value);
-                this.adminGetItemByCity();
+                this.$store.commit('setCategory', value);
+                this.getArticlesByCity();
             }
         },
         isUserLoggedIn() {

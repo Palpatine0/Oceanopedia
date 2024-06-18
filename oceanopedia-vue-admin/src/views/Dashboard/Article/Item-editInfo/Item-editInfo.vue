@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     updateItemInfoById() {
-      this.$api.updateItemInfoById({
+      this.$api.updateArticleInfoById({
         id: this.itemInfo.id,
         recommendation: this.itemInfo.recommendation,
         isRented: this.itemInfo.isRented,
@@ -99,7 +99,7 @@ export default {
         sales: this.itemInfo.sales,
         weight: this.itemInfo.weight,
         price: this.itemInfo.price,
-        city: this.$store.state.city,
+        category: this.$store.state.category,
         rentType: this.itemInfo.rentType,
         houseType: this.itemInfo.houseType,
         buytime: this.itemInfo.buytime,
