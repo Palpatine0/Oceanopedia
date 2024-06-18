@@ -5,13 +5,18 @@ spring:
   application:
     name: oceanopedia-gateway-server
   cloud:
+    config:
+      uri: http://localhost:8764
+      label: master
+      name: oceanopedia
+      profile: dev
     gateway:
       discovery:
         locator:
           enabled: false
           lower-case-service-id: true
       routes:
-        # multimedia
+        # oceanopedia-multimedia
         - id: multimedia-getBanners
           uri: lb://oceanopedia-multimedia
           predicates:
@@ -21,7 +26,7 @@ spring:
           predicates:
             - Path=/multimedia/uploadImageNoPrefix
 
-        # user
+        # oceanopedia-user
         - id: user
           uri: lb://oceanopedia-user
           predicates:
@@ -53,7 +58,7 @@ spring:
             - Path=/user/getUserById
             - Query=id
         
-        # article
+        # oceanopedia-article
         - id: article-getArticleByID
           uri: lb://oceanopedia-article
           predicates:
@@ -83,9 +88,3 @@ spring:
           uri: lb://oceanopedia-article
           predicates:
             - Path=/article/updateArticleCoverImageById
-                    
-    config:
-      uri: http://localhost:8764
-      label: master
-      name: oceanopedia
-      profile: dev

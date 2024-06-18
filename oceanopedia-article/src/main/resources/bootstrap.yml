@@ -5,7 +5,7 @@ spring:
   application:
     name: oceanopedia-article
   profiles:
-    active: bannerNginx,mongodb,redis, fdfsBasePathNginx
+    active: mongodb, redis, fdfsBasePathNginx, bannerNginx
   cloud:
     config:
       uri: http://localhost:8764
