@@ -6,6 +6,7 @@ import Users from '../views/Users/Users.vue'
 import Register from "@/views/Register/Register.vue";
 import Login from '../views/Login/Login.vue'
 import store from '../store'
+import Dashboard from "@/views/Dashboard/Dashboard.vue";
 
 Vue.use(VueRouter)
 
@@ -22,8 +23,8 @@ const routes = [
     },
     {
         path: '/',
-        name: 'Article',
-        component: Article
+        name: 'Dashboard',
+        component: Dashboard
     },
     {
         path: '/detail/:id',
@@ -34,6 +35,11 @@ const routes = [
         path: '/users',
         name: 'Users',
         component: Users
+    },
+    {
+        path: '/article',
+        name: 'Article',
+        component: Article
     },
 
 ]

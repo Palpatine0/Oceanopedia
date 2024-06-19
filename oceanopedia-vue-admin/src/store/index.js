@@ -11,16 +11,25 @@ export default new Vuex.Store({
         links: [
             {
                 icon: 'fa-lg fas fa-home',
-                text: 'Article',
+                text: 'Dashboard',
                 route: '/'
             },
             {
                 icon: 'fa-lg fa-solid fa-user',
                 text: 'Users',
                 route: '/users'
-            }, // {icon: 'fa-lg fa-solid fa-flask', text: 'Test', route: '/test'},
+            },
+            {
+                icon: 'fa-lg fas fa-file',
+                text: 'Article',
+                route: '/'
+            },
         ],
-        categories: ['Ocean Life', 'Ecosystems', 'Planet Ocean'],
+        categories: [
+            'Ocean Life',
+            'Ecosystems',
+            'Planet Ocean'
+        ],
         user: {
             id: localStorage.getItem('userId') || '', username: localStorage.getItem('username') || '',
         }
@@ -66,6 +75,5 @@ export default new Vuex.Store({
             commit('clearUser');
         }
     }, modules: {
-        // You can define modules here if needed
     }
 });
