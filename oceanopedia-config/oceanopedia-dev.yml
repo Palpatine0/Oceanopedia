@@ -21,6 +21,10 @@ fdfs:
   fileUrl: http://111.231.19.137:8888/
   tracker-list:
     - 111.231.19.137:22122
+  pool:
+    max-total: 200
+    max-total-per-key: 50
+    max-wait-millis: 5000
 
 logging:
   pattern:
