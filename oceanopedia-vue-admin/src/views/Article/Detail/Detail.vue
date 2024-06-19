@@ -15,7 +15,7 @@
         <!--Title-->
         <v-container class="mt-5">
             <v-row style="height: 120px;justify-content: space-between">
-                <v-col cols="6" md="6" sm="6">
+                <v-col cols="6" md="9" sm="6">
                     <div v-if="article.title">
                         <p class="info-head-title">
                             {{ article.title }}
@@ -30,24 +30,35 @@
                     </div>
                 </v-col>
 
-                <v-col cols="6" md="2" sm="6">
-                    <div v-if="article.status==true">
-                        <v-btn color="accent" rounded x-large>
-                            <v-icon size="26">mdi-checkbox-marked-circle</v-icon>
-                            &nbsp;PUBLISHED
-                        </v-btn>
-                    </div>
-                    <div v-else-if="article.status!=true">
-                        <v-btn color="#dbdbdb" rounded x-large>
-                            <v-icon size="26">mdi-cancel</v-icon>
-                            &nbsp;DRAFT
-                        </v-btn>
-                    </div>
-                </v-col>
-                <v-col cols="6" md="2" sm="6">
-                    <div style="float: right">
-                        <v-icon size="66">mdi-cog</v-icon>
-                    </div>
+                <v-col>
+
+                    <v-row>
+                        <v-col>
+                            <div class="mt-1">
+                                <div v-if="article.status==true" @click="updateItemStatusById">
+                                    <v-btn color="accent" rounded x-large>
+                                        <v-icon size="26">mdi-checkbox-marked-circle</v-icon>
+                                        &nbsp;PUBLISHED
+                                    </v-btn>
+                                </div>
+                                <div v-else-if="article.status!=true" @click="updateItemStatusById">
+                                    <v-btn color="#dbdbdb" rounded x-large>
+                                        <v-icon size="26">mdi-cancel</v-icon>
+                                        &nbsp;DRAFT
+                                    </v-btn>
+                                </div>
+                            </div>
+                        </v-col>
+                        <v-col>
+                            <div style="float: right">
+                                <v-icon size="66">mdi-cog</v-icon>
+                            </div>
+                        </v-col>
+
+
+                    </v-row>
+
+
                 </v-col>
             </v-row>
         </v-container>
@@ -56,7 +67,7 @@
         <v-container class="mb-5 mb-5">
             <v-row>
                 <!--Info-->
-                <v-col cols="6" md="10" sm="6">
+                <v-col cols="6" md="9" sm="6">
                     <v-row style="height: 120px">
                         <!--Views-->
                         <v-col class="info-cell" cols="6" md="5" sm="6">
@@ -108,7 +119,7 @@
                     </v-row>
                 </v-col>
                 <v-col cols="6" md="2">
-                    <v-progress-circular :rotate="90" :size="230" :width="35" :value="article.views !== 0 ? parseFloat((article.likes / article.views) * 100).toFixed(2) : 0" color="#5aaeaa" style="margin-left: -66px">
+                    <v-progress-circular :rotate="90" :size="230" :width="35" :value="article.views !== 0 ? parseFloat((article.likes / article.views) * 100).toFixed(2) : 0" color="#5aaeaa" style="margin-left: 30px">
                         <span style="font-size: 20px;font-weight: bold">
                             {{ article.views !== 0 ? parseFloat((article.likes / article.views) * 100).toFixed(2) : 0 }}%
                         </span>
@@ -182,6 +193,9 @@
 
         </v-dialog>
 
+        <v-snackbar v-model="infoStatusUpdate_snackbar" :timeout="2000">
+            {{ infoStatusUpdate_msg }}
+        </v-snackbar>
     </v-app>
 </template>
 
@@ -210,10 +224,12 @@ export default {
             article: {},
             title: '',
 
-            statusUpdate_dialog: false,
             infoUpdate_dialog: false,
             showcasesUpdate_dialog: false,
-            itemDelete_dialog: false
+            itemDelete_dialog: false,
+
+            infoStatusUpdate_msg: false,
+            infoStatusUpdate_snackbar: false,
         };
     },
     methods: {
@@ -227,6 +243,21 @@ export default {
                     window.history.back();
                 }
             });
+        },
+        updateItemStatusById() {
+            this.$api.updateArticleStatusById({
+                id: this.article.id,
+                status: !this.article.status
+            })
+            .then((data) => {
+                if (data.data.status == 200) {
+                    this.infoStatusUpdate_msg = data.data.data;
+                    this.infoStatusUpdate_snackbar = true
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1200);
+                }
+            })
         }
     },
     mounted() {
@@ -315,6 +346,6 @@ export default {
 }
 
 * {
-    //outline: 1px solid red;
+//outline: 1px solid red;
 }
 </style>

@@ -11,11 +11,17 @@
                     <v-pagination v-model="page" :length="pagination" class="float-right" color="primary" @input="getArticlesByCity"></v-pagination>
                 </div>
             </v-row>
+
             <div v-if="articleList[0]!=null">
                 <v-row>
                     <v-col v-for="(item, index) in articleList" :key="index" cols="12" lg="4" md="6">
                         <v-card class="mx-auto" max-width="400">
-                            <v-img :src="img_prefix + item.coverImage" class="white--text align-end" height="200px"></v-img>
+                            <v-img :src="img_prefix + item.coverImage" class="white--text align-end" height="200px">
+                                <div style="margin-bottom: 140px;margin-left: 14px">
+                                    <v-icon v-if="item.status==true" size="36" color="accent">mdi-checkbox-marked-circle</v-icon>
+                                    <v-icon v-else size="36" color="error">mdi-cancel</v-icon>
+                                </div>
+                            </v-img>
                             <v-card-title class="pb-0 mb-3">
                                 {{ item.title }}
                             </v-card-title>
@@ -144,3 +150,9 @@ export default {
     }
 }
 </script>
+
+<style>
+* {
+//outline: 1px solid red;
+}
+</style>
