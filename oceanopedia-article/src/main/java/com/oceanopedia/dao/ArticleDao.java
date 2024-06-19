@@ -17,7 +17,7 @@ public interface ArticleDao {
 
     void saveArticle(Article Article);
 
-    void updateArticleStatusById(String id, String status);
+    void updateArticleStatusById(String id, boolean status);
 
     void updateArticleInfoById(String id, Article Article);
 

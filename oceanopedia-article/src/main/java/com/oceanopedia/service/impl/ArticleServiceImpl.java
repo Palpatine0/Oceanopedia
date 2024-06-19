@@ -74,7 +74,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     @CacheEvict(cacheNames = "com:oceanopedia", key = "'getDetails('+#id+')'")
-    public OceanopediaResult updateArticleStatusById(String id, String status) {
+    public OceanopediaResult updateArticleStatusById(String id, boolean status) {
         try {
             articleDao.updateArticleStatusById(id, status);
             return OceanopediaResult.ok("Status update successfully.");

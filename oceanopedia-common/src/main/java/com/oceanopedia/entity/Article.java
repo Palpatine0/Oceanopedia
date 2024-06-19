@@ -32,7 +32,7 @@ public class Article {
 
     private int likes;
 
-    private String status;
+    private boolean status;
 
     private Date updatedDate;
 
@@ -47,4 +47,11 @@ public class Article {
     public void setLink(String link) {
     }
 
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }

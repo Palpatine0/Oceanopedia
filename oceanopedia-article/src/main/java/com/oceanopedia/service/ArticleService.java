@@ -13,7 +13,7 @@ public interface ArticleService {
 
     OceanopediaResult addArticle(Article article);
 
-    OceanopediaResult updateArticleStatusById(String id, String status);
+    OceanopediaResult updateArticleStatusById(String id, boolean status);
 
     OceanopediaResult updateArticleInfoById(String id, Article article);
 
