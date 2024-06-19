@@ -50,13 +50,11 @@ public class ArticleDaoImpl implements ArticleDao {
     }
 
     @Override
-    public void updateArticleStatusById(String id, String status) {
+    public void updateArticleStatusById(String id, boolean status) {
         Query query = new Query();
         query.addCriteria(Criteria.where("id").is(id));
         Update update = new Update();
-        if (status != null) {
-            update.set("status", status);
-        }
+        update.set("status", status);
         mongoTemplate.findAndModify(query, update, Article.class);
     }
 

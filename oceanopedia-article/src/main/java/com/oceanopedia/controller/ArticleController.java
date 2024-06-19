@@ -33,7 +33,7 @@ public class ArticleController {
 
     @PostMapping("/addArticle")
     public OceanopediaResult addArticle(
-            String title, String content, String author, String summary, int views, int likes, String status,
+            String title, String content, String author, String summary, int views, int likes, boolean status,
             @RequestParam(required = false) String publicationDate, @RequestParam(required = false) String updatedDate,
             String category, String coverImage, @RequestParam(required = false) List<String> tags) throws ParseException {
 
@@ -71,13 +71,13 @@ public class ArticleController {
     }
 
     @PostMapping("/updateArticleStatusById")
-    public OceanopediaResult updateArticleStatusById(String id, String status) {
+    public OceanopediaResult updateArticleStatusById(String id, boolean status) {
         return articleService.updateArticleStatusById(id, status);
     }
 
     @PostMapping("/updateArticleInfoById")
     public OceanopediaResult updateArticleInfoById(
-            String id, String title, String content, String author, String summary, int views, int likes, String status,
+            String id, String title, String content, String author, String summary, int views, int likes, boolean status,
             @RequestParam(required = false) String publicationDate, @RequestParam(required = false) String updatedDate,
             String category, String coverImage, @RequestParam(required = false) List<String> tags) throws ParseException {
 
