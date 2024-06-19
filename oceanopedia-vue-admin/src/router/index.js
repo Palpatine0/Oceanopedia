@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Dashboard from '../views/Dashboard/Dashboard.vue'
-import Article from '../views/Dashboard/Article/Article.vue'
+import Article from '../views/Article/Article.vue'
+import Detail from '../views/Article/Detail/Detail.vue'
 import Users from '../views/Users/Users.vue'
 import Register from "@/views/Register/Register.vue";
 import Login from '../views/Login/Login.vue'
@@ -10,21 +10,6 @@ import store from '../store'
 Vue.use(VueRouter)
 
 const routes = [
-    {
-        path: '/',
-        name: 'Dashboard',
-        component: Dashboard
-    },
-    {
-        path: '/article/:id',
-        name: 'Details',
-        component: Article
-    },
-    {
-        path: '/users',
-        name: 'Users',
-        component: Users
-    },
     {
         path: '/login',
         name: 'login',
@@ -35,6 +20,22 @@ const routes = [
         name: 'register',
         component: Register
     },
+    {
+        path: '/',
+        name: 'Article',
+        component: Article
+    },
+    {
+        path: '/detail/:id',
+        name: 'Detail',
+        component: Detail
+    },
+    {
+        path: '/users',
+        name: 'Users',
+        component: Users
+    },
+
 ]
 
 const router = new VueRouter({

@@ -1,6 +1,6 @@
 <template>
     <v-app style="padding: 20px">
-        <v-subheader as="h1" class="subheading grey--text">Dashboard > Article</v-subheader>
+        <v-subheader as="h1" class="subheading grey--text">Article > Detail</v-subheader>
 
         <div v-if="article.coverImage">
             <v-img :src="img_prefix + article.coverImage" class="white--text align-end" height="400px" style="background-color: gainsboro"></v-img>
@@ -119,7 +119,7 @@
 
         <v-divider></v-divider>
 
-        <!-- Article Content -->
+        <!-- Detail Content -->
         <v-container class="mb-5">
             <v-row>
                 <v-col cols="12">
@@ -186,9 +186,9 @@
 </template>
 
 <script>
-// import ItemEditStatus from "@/views/Dashboard/Article/Item-editStatus/Item-editStatus.vue";
-// import ItemEditInfo from "@/views/Dashboard/Article/Item-editInfo/Item-editInfo.vue";
-// import ItemEditShowcases from "@/views/Dashboard/Article/Item-editShowcases/Item-editShowcases.vue";
+// import ItemEditStatus from "@/views/Detail/Detail/Item-editStatus/Item-editStatus.vue";
+// import ItemEditInfo from "@/views/Detail/Detail/Item-editInfo/Item-editInfo.vue";
+// import ItemEditShowcases from "@/views/Detail/Detail/Item-editShowcases/Item-editShowcases.vue";
 import {mapState} from "vuex";
 import Vue from 'vue';
 

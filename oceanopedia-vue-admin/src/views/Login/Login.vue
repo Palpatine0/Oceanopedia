@@ -49,7 +49,7 @@ export default {
                             username: userData.data.data.username,
                             avatar: userData.data.data.avatar
                         });
-                        this.$router.push({ name: 'Dashboard' });
+                        this.$router.push({ name: 'Detail' });
                     });
                     alert(data.data.msg);
                 } else {

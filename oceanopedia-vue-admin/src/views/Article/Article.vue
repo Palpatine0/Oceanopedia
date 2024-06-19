@@ -1,6 +1,6 @@
 <template>
     <v-app :style="{ padding: isUserLoggedIn ? '20px' : '0px', minHeight: '100vh' }">
-        <v-subheader v-if="isUserLoggedIn" as="h1" class="subheading grey--text">Dashboard</v-subheader>
+        <v-subheader v-if="isUserLoggedIn" as="h1" class="subheading grey--text">Article</v-subheader>
         <v-container v-if="isUserLoggedIn">
             <v-row style="justify-content: space-between">
                 <v-col cols="2">
@@ -76,7 +76,7 @@
 
 <script>
 import {mapState} from "vuex";
-import AddArticle_Model from "@/views/Dashboard/AddArticle-Model/AddArticle-Model.vue";
+import AddArticle_Model from "@/views/Article/AddArticle-Model/AddArticle-Model.vue";
 
 export default {
     components: {

@@ -41,7 +41,7 @@ public class Article {
     private String category;
 
     public String getLink() {
-        return "/article/" + id;
+        return "/detail/" + id;
     }
 
     public void setLink(String link) {
