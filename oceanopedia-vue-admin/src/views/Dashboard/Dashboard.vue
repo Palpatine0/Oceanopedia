@@ -60,15 +60,13 @@
             <div v-else>
                 <v-sheet color="darken-2" style="background-color: #fafafa;">
                     <div style="display: flex">
-                        <v-skeleton-loader class="mx-auto" width="366" type="card">
+                        <v-skeleton-loader class="mx-auto" width="366" type="image,  article,actions">
                         </v-skeleton-loader>
-                        <v-skeleton-loader class="mx-auto" width="366" type="card">
+                        <v-skeleton-loader class="mx-auto" width="366" type="image,  article,actions">
                         </v-skeleton-loader>
-                        <v-skeleton-loader class="mx-auto" width="366" type="card">
+                        <v-skeleton-loader class="mx-auto" width="366" type="image,  article,actions">
                         </v-skeleton-loader>
-
                     </div>
-
                 </v-sheet>
             </div>
         </v-container>

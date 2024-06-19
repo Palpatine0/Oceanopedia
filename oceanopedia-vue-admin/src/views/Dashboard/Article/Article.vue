@@ -5,13 +5,12 @@
         <div v-if="article.coverImage">
             <v-img :src="img_prefix + article.coverImage" class="white--text align-end" height="400px" style="background-color: gainsboro"></v-img>
         </div>
-        <div v-else-if="!article.coverImage">
+        <div v-else>
             <v-sheet color="lighten-4">
                 <v-skeleton-loader height="400" type="image">
                 </v-skeleton-loader>
             </v-sheet>
         </div>
-        {{ article.coverImage }}
 
         <!--Title-->
         <v-container class="mt-5">
@@ -46,7 +45,9 @@
                     </div>
                 </v-col>
                 <v-col cols="6" md="2" sm="6">
-                    <v-icon size="26">mdi-cog</v-icon>
+                    <div style="float: right">
+                        <v-icon size="66">mdi-cog</v-icon>
+                    </div>
                 </v-col>
             </v-row>
         </v-container>
