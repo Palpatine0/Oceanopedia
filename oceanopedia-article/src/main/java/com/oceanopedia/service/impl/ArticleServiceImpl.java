@@ -65,10 +65,14 @@ public class ArticleServiceImpl implements ArticleService {
     public OceanopediaResult addArticle(Article Article) {
         try {
             articleDao.saveArticle(Article);
-            return OceanopediaResult.ok("Article added successfully.");
+            OceanopediaResult ok = OceanopediaResult.ok();
+            ok.setMsg("Article added successfully.");
+            return ok;
         } catch (Exception e) {
             e.printStackTrace();
-            return OceanopediaResult.error("Failed to add Article.");
+            OceanopediaResult error = OceanopediaResult.error();
+            error.setMsg("Failed to add Article.");
+            return error;
         }
     }
 
@@ -77,10 +81,14 @@ public class ArticleServiceImpl implements ArticleService {
     public OceanopediaResult updateArticleStatusById(String id, boolean status) {
         try {
             articleDao.updateArticleStatusById(id, status);
-            return OceanopediaResult.ok("Status update successfully.");
+            OceanopediaResult ok = OceanopediaResult.ok();
+            ok.setMsg("Status update successfully.");
+            return ok;
         } catch (Exception e) {
             e.printStackTrace();
-            return OceanopediaResult.error("Status update failed");
+            OceanopediaResult error = OceanopediaResult.error();
+            error.setMsg("Status update failed.");
+            return error;
         }
     }
 
@@ -89,10 +97,14 @@ public class ArticleServiceImpl implements ArticleService {
     public OceanopediaResult updateArticleInfoById(String id, Article Article) {
         try {
             articleDao.updateArticleInfoById(id, Article);
-            return OceanopediaResult.ok("Info update successfully.");
+            OceanopediaResult ok = OceanopediaResult.ok();
+            ok.setMsg("Info update successfully.");
+            return ok;
         } catch (Exception e) {
             e.printStackTrace();
-            return OceanopediaResult.error("Info update failed");
+            OceanopediaResult error = OceanopediaResult.error();
+            error.setMsg("Info update failed");
+            return error;
         }
     }
 
@@ -106,8 +118,8 @@ public class ArticleServiceImpl implements ArticleService {
             return ok;
         } catch (Exception e) {
             e.printStackTrace();
-            OceanopediaResult result = OceanopediaResult.error();
-            result.setMsg("Showcases update successfully.");
+            OceanopediaResult error = OceanopediaResult.error();
+            error.setMsg("Showcases update successfully.");
             return OceanopediaResult.error("Showcases update failed");
         }
     }

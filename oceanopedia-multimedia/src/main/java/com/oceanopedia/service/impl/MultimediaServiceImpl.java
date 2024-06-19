@@ -106,6 +106,7 @@ public class MultimediaServiceImpl implements MultimediaService {
                 multimediaDao.saveImage(image);
                 OceanopediaResult ok = OceanopediaResult.ok(imageUrl);
                 ok.setMsg("File uploaded success");
+                ok.setData(imageUrl);
                 return ok;
             } catch (IOException ioException) {
                 OceanopediaResult error = OceanopediaResult.error();

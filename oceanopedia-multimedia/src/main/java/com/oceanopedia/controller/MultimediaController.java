@@ -32,15 +32,13 @@ public class MultimediaController {
     public OceanopediaResult uploadImageNoPrefix(@RequestParam("file") MultipartFile file) throws IOException {
         try {
             byte[] bytes = file.getBytes();
-            System.out.println("File uploaded successfully: " + file.getOriginalFilename());
             return multimediaService.uploadImageNoPrefix(bytes, file.getOriginalFilename());
         } catch (Exception e) {
-            System.err.println("Error processing file: " + file.getOriginalFilename());
             e.printStackTrace();
-            OceanopediaResult result = new OceanopediaResult();
-            result.setStatus(500);
-            result.setMsg("Failed to upload file due to an error: " + e.getMessage());
-            return result;
+            OceanopediaResult error = new OceanopediaResult();
+            error.setStatus(500);
+            error.setMsg("Failed to upload file due to an error: " + e.getMessage());
+            return error;
         }
     }
 

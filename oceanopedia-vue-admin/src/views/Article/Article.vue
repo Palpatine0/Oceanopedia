@@ -6,7 +6,9 @@
                 <v-col cols="2">
                     <v-select v-model="selectedCategory" :items="categories" label="Category"></v-select>
                 </v-col>
+
                 <AddArticle_Model v-if="isUserLoggedIn" class="mt-5"></AddArticle_Model>
+
                 <div class="mt-5">
                     <v-pagination v-model="page" :length="pagination" class="float-right" color="primary" @input="getArticlesByCity"></v-pagination>
                 </div>

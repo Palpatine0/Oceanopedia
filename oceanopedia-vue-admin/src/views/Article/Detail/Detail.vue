@@ -2,8 +2,8 @@
     <v-app style="padding: 20px">
         <v-subheader as="h1" class="subheading grey--text">Article > Detail</v-subheader>
 
-        <div v-if="article.coverImage">
-            <v-img :src="img_prefix + article.coverImage" class="white--text align-end" height="400px" style="background-color: gainsboro"></v-img>
+        <div v-if="articleInfo.coverImage">
+            <v-img :src="img_prefix + articleInfo.coverImage" class="white--text align-end" height="400px" style="background-color: gainsboro"></v-img>
         </div>
         <div v-else>
             <v-sheet color="lighten-4">
@@ -15,14 +15,14 @@
         <!--Title-->
         <v-container class="mt-5">
             <v-row style="height: 120px;justify-content: space-between">
-                <v-col cols="6" md="9" sm="6">
-                    <div v-if="article.title">
+                <v-col cols="6" md="8" sm="6">
+                    <div v-if="articleInfo.title">
                         <p class="info-head-title">
-                            {{ article.title }}
+                            {{ articleInfo.title }}
                         </p>
-                        <p class="title">{{ article.author }}</p>
+                        <p class="title">{{ articleInfo.author }}</p>
                     </div>
-                    <div v-else-if="!article.title">
+                    <div v-else-if="!articleInfo.title">
                         <v-sheet color="darken-2" style="background-color: #fafafa">
                             <v-skeleton-loader height="40" type="text"></v-skeleton-loader>
                             <v-skeleton-loader class="mt-2" width="400" height="20" type="text"></v-skeleton-loader>
@@ -31,17 +31,16 @@
                 </v-col>
 
                 <v-col>
-
                     <v-row>
                         <v-col>
                             <div class="mt-1">
-                                <div v-if="article.status==true" @click="updateItemStatusById">
+                                <div v-if="articleInfo.status==true" @click="updateItemStatusById">
                                     <v-btn color="accent" rounded x-large>
                                         <v-icon size="26">mdi-checkbox-marked-circle</v-icon>
                                         &nbsp;PUBLISHED
                                     </v-btn>
                                 </div>
-                                <div v-else-if="article.status!=true" @click="updateItemStatusById">
+                                <div v-else-if="articleInfo.status!=true" @click="updateItemStatusById">
                                     <v-btn color="#dbdbdb" rounded x-large>
                                         <v-icon size="26">mdi-cancel</v-icon>
                                         &nbsp;DRAFT
@@ -51,14 +50,15 @@
                         </v-col>
                         <v-col>
                             <div style="float: right">
-                                <v-icon size="66">mdi-cog</v-icon>
+                                <v-icon size="66" color="#ababab" @click="editInfo_dialog=!editInfo_dialog">mdi-cog</v-icon>
                             </div>
                         </v-col>
-
-
+                        <v-col>
+                            <div style="float: right">
+                                <v-icon size="66" color="error" @click="deleteArticle_dialog=!deleteArticle_dialog">mdi-trash-can-outline</v-icon>
+                            </div>
+                        </v-col>
                     </v-row>
-
-
                 </v-col>
             </v-row>
         </v-container>
@@ -77,7 +77,7 @@
                                 </v-col>
                                 <v-col class="mt-1" style="margin-left: 30px">
                                     <p class="info-head">
-                                        {{ article.views }}
+                                        {{ articleInfo.views }}
                                     </p>
                                     <p class="info-body">Views</p>
                                 </v-col>
@@ -92,7 +92,7 @@
                                 </v-col>
                                 <v-col class="mt-1" style="margin-left: 30px">
                                     <p class="info-head">
-                                        {{ article.likes }}
+                                        {{ articleInfo.likes }}
                                     </p>
                                     <p class="info-body">Likes</p>
                                 </v-col>
@@ -110,7 +110,7 @@
                                 </v-col>
                                 <v-col class="mt-1" style="margin-left: 30px">
                                     <p class="info-head">
-                                        {{ article.publicationDate | formatDate }}
+                                        {{ articleInfo.publicationDate | formatDate }}
                                     </p>
                                     <p class="info-body">Publication Date</p>
                                 </v-col>
@@ -119,9 +119,9 @@
                     </v-row>
                 </v-col>
                 <v-col cols="6" md="2">
-                    <v-progress-circular :rotate="90" :size="230" :width="35" :value="article.views !== 0 ? parseFloat((article.likes / article.views) * 100).toFixed(2) : 0" color="#5aaeaa" style="margin-left: 30px">
+                    <v-progress-circular :rotate="90" :size="230" :width="35" :value="articleInfo.views !== 0 ? parseFloat((articleInfo.likes / articleInfo.views) * 100).toFixed(2) : 0" color="#5aaeaa" style="margin-left: 30px">
                         <span style="font-size: 20px;font-weight: bold">
-                            {{ article.views !== 0 ? parseFloat((article.likes / article.views) * 100).toFixed(2) : 0 }}%
+                            {{ articleInfo.views !== 0 ? parseFloat((articleInfo.likes / articleInfo.views) * 100).toFixed(2) : 0 }}%
                         </span>
                     </v-progress-circular>
                 </v-col>
@@ -138,43 +138,13 @@
                         <h3>Article Content</h3>
                     </v-card-title>
                     <v-card-text style="font-size: 16px">
-                        {{ article.content }}
+                        {{ articleInfo.content }}
                     </v-card-text>
                 </v-col>
             </v-row>
         </v-container>
 
-
-        <!--        <v-col cols="12" md="3" sm="6" style="margin-top: -80px">
-                    <v-card class="mx-auto center_h" max-width="344" outlined
-                            style="border-radius: 14px;flex-direction: column">
-                        <v-btn class="edit-btn mt-5 mb-4" color="#156ff6" dark style="height: 50px!important;"
-                               @click="statusUpdate_dialog=!statusUpdate_dialog">
-                            Edit Status
-                        </v-btn>
-                        <v-btn class="edit-btn mb-2" color="#156ff6" dark outlined
-                               @click="infoUpdate_dialog=!infoUpdate_dialog">
-                            Edit Info
-                        </v-btn>
-                        <v-btn class="edit-btn mb-5" color="#156ff6" dark outlined
-                               @click="showcasesUpdate_dialog=!showcasesUpdate_dialog">
-                            Edit Showcases
-                        </v-btn>
-                    </v-card>
-                    <v-card class="mx-auto center_h mt-3 mb-3" max-width="344" outlined
-                            style="border-radius: 14px;flex-direction: column;border-color: #ffa9ac">
-                        <v-btn class="edit-btn mt-3 mb-3" color="red" dark outlined
-                               @click="itemDelete_dialog=!itemDelete_dialog">
-                            <b>DELETE</b>
-                        </v-btn>
-                    </v-card>
-                </v-col>-->
-
-        <!--        <ItemEditStatus :item-info="article" :statusUpdate_dialog="statusUpdate_dialog" />-->
-        <!--        <ItemEditInfo :infoUpdate_dialog="infoUpdate_dialog" :item-info="article" />-->
-        <!--        <ItemEditShowcases :item-info="article" :showcasesUpdate_dialog="showcasesUpdate_dialog" />-->
-
-        <v-dialog v-model="itemDelete_dialog" max-width="320" persistent>
+        <v-dialog v-model="deleteArticle_dialog" max-width="320" persistent>
             <v-card>
                 <v-card-title class="text-h5">
                     CONFIRM YOUR OPTION
@@ -182,29 +152,30 @@
                 <v-card-text>You can't revert this action once deleted.</v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="red darken-1" text @click="itemDelete_dialog = false">
+                    <v-btn color="red darken-1" text @click="deleteArticle_dialog = false">
                         Cancel
                     </v-btn>
-                    <v-btn color="red darken-1" text @click="deleteItemByID(),itemDelete_dialog = false">
+                    <v-btn color="red darken-1" text @click="deleteItemByID(),deleteArticle_dialog = false">
                         Confirm
                     </v-btn>
                 </v-card-actions>
             </v-card>
-
         </v-dialog>
 
-        <v-snackbar v-model="infoStatusUpdate_snackbar" :timeout="2000">
-            {{ infoStatusUpdate_msg }}
+
+        <v-snackbar v-model="editArticleStatus_snackbar" color="" :timeout="2000">
+            {{ editArticleStatus_msg }}
         </v-snackbar>
+
+
+        <EditInfo_Model :articleInfo="articleInfo" :editInfo_dialog="editInfo_dialog"/>
     </v-app>
 </template>
 
 <script>
-// import ItemEditStatus from "@/views/Detail/Detail/Item-editStatus/Item-editStatus.vue";
-// import ItemEditInfo from "@/views/Detail/Detail/Item-editInfo/Item-editInfo.vue";
-// import ItemEditShowcases from "@/views/Detail/Detail/Item-editShowcases/Item-editShowcases.vue";
 import {mapState} from "vuex";
 import Vue from 'vue';
+import EditInfo_Model from "@/views/Article/Detail/EditInfo-Model/EditInfo-Model.vue";
 
 Vue.filter('formatDate', function (value) {
     if (!value) return '';
@@ -214,22 +185,20 @@ Vue.filter('formatDate', function (value) {
 export default {
     name: "Article",
     components: {
-        // ItemEditStatus,
-        // ItemEditInfo,
-        // ItemEditShowcases
+        EditInfo_Model
     },
     data() {
         return {
             // page vars
-            article: {},
+            articleInfo: {},
             title: '',
 
-            infoUpdate_dialog: false,
-            showcasesUpdate_dialog: false,
-            itemDelete_dialog: false,
+            editArticleStatus_msg: false,
+            editArticleStatus_snackbar: false,
 
-            infoStatusUpdate_msg: false,
-            infoStatusUpdate_snackbar: false,
+            deleteArticle_dialog: false,
+
+            editInfo_dialog: false,
         };
     },
     methods: {
@@ -240,19 +209,21 @@ export default {
             this.$api.deleteArticleByID({id: this.$route.params.id})
             .then(data => {
                 if (data.data.status == 200) {
-                    window.history.back();
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1200);
                 }
             });
         },
         updateItemStatusById() {
             this.$api.updateArticleStatusById({
-                id: this.article.id,
-                status: !this.article.status
+                id: this.articleInfo.id,
+                status: !this.articleInfo.status
             })
             .then((data) => {
                 if (data.data.status == 200) {
-                    this.infoStatusUpdate_msg = data.data.data;
-                    this.infoStatusUpdate_snackbar = true
+                    this.editArticleStatus_msg = data.data.data;
+                    this.editArticleStatus_snackbar = true
                     setTimeout(() => {
                         window.location.reload();
                     }, 1200);
@@ -263,7 +234,7 @@ export default {
     mounted() {
         this.$api.getArticleByID({id: this.$route.params.id})
         .then(data => {
-            this.article = data.data;
+            this.articleInfo = data.data;
             this.title = data.data.title;
         });
     },
