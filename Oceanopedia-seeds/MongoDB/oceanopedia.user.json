@@ -1,0 +1,100 @@
+[{
+  "_id": {
+    "$oid": "666f41e047d8d9496db96fb2"
+  },
+  "username": "21131",
+  "password": "12312",
+  "avatar": "group1/M00/00/02/CgAEDGZvMWqAQoDMAACf56sfwHE812.png",
+  "type": "admin",
+  "_class": "com.oceanopedia.entity.User"
+},
+{
+  "_id": {
+    "$oid": "666f446047d8d9496db96fb5"
+  },
+  "username": "Percival",
+  "password": "1",
+  "avatar": "group1/M00/00/02/CgAEDGZvRFyAUkWiAAS3Y8f-2yQ586.jpg",
+  "type": "admin",
+  "_class": "com.oceanopedia.entity.User"
+},
+{
+  "_id": {
+    "$oid": "666f44ed47d8d9496db96fb6"
+  },
+  "username": "TESTA",
+  "password": "1",
+  "avatar": "group1/M00/00/02/CgAEDGZvROmAfu6wAAJcZCEiIKs13.webp",
+  "type": "admin",
+  "_class": "com.oceanopedia.entity.User"
+},
+{
+  "_id": {
+    "$oid": "666f44fa47d8d9496db96fb7"
+  },
+  "username": "TESTB",
+  "password": "1",
+  "avatar": "group1/M00/00/02/CgAEDGZvRPiAHEAbAAFgnDmhW6g03.webp",
+  "type": "admin",
+  "_class": "com.oceanopedia.entity.User"
+},
+{
+  "_id": {
+    "$oid": "666f450647d8d9496db96fb8"
+  },
+  "username": "TESTC",
+  "password": "1",
+  "avatar": "group1/M00/00/02/CgAEDGZvRQOAJEPTAAJJatghfdM07.avif",
+  "type": "admin",
+  "_class": "com.oceanopedia.entity.User"
+},
+{
+  "_id": {
+    "$oid": "666f451447d8d9496db96fb9"
+  },
+  "username": "TESTD",
+  "password": "1",
+  "avatar": "group1/M00/00/02/CgAEDGZvRRCAOVQJAAG95FE3q0o37.webp",
+  "type": "admin",
+  "_class": "com.oceanopedia.entity.User"
+},
+{
+  "_id": {
+    "$oid": "666f452347d8d9496db96fba"
+  },
+  "username": "TESTE",
+  "password": "1",
+  "avatar": "group1/M00/00/02/CgAEDGZvRSCAD5otAAC2oDQMZO050.webp",
+  "type": "admin",
+  "_class": "com.oceanopedia.entity.User"
+},
+{
+  "_id": {
+    "$oid": "666f453347d8d9496db96fbb"
+  },
+  "username": "TESTF",
+  "password": "1",
+  "avatar": "group1/M00/00/02/CgAEDGZvRTCAH5irAADAPhbc2Cc19.webp",
+  "type": "admin",
+  "_class": "com.oceanopedia.entity.User"
+},
+{
+  "_id": {
+    "$oid": "666f4ce7c90b1164d81a2577"
+  },
+  "username": "TESTG",
+  "password": "1",
+  "avatar": "group1/M00/00/02/CgAEDGZvTOOAYcL8AAGYFk3l6zE79.avif",
+  "type": "admin",
+  "_class": "com.oceanopedia.entity.User"
+},
+{
+  "_id": {
+    "$oid": "666f4cf5c90b1164d81a2578"
+  },
+  "username": "TESTH",
+  "password": "1",
+  "avatar": "group1/M00/00/02/CgAEDGZvTPOANagyAACGZIx1CJo34.webp",
+  "type": "admin",
+  "_class": "com.oceanopedia.entity.User"
+}]
