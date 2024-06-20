@@ -29,7 +29,7 @@ Ensure you have the following installed:
 
 #### Core Services
 
-- **Eureka server:** 8761
+- **Eureka server:** 8763
 - **Config server:** 8764
 - **Gateway server:** 4007
 
