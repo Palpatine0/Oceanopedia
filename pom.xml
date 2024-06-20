@@ -12,10 +12,11 @@
     <description>Oceanopedia</description>
 
     <modules>
-        <module>oceanopedia-common</module>
         <module>oceanopedia-eureka-server</module>
         <module>oceanopedia-config-server</module>
         <module>oceanopedia-gateway-server</module>
+        <module>oceanopedia-common</module>
+
         <module>oceanopedia-multimedia</module>
         <module>oceanopedia-mongodb-dao</module>
         <module>oceanopedia-redis-cache</module>
@@ -70,13 +71,6 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang-version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-devtools</artifactId>
-                <scope>runtime</scope>
-                <optional>true</optional>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -1,4 +1,6 @@
 eureka:
+  server:
+    enable-self-preservation: false
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
@@ -13,7 +15,7 @@ oceanopedia:
       prefix: http://111.231.19.137:8889/
   fdfsBasePath:
     nginx:
-      prefix: http://111.231.19.137:8889/    
+      prefix: http://111.231.19.137:8889/
 
 fdfs:
   so-timeout: 10000
