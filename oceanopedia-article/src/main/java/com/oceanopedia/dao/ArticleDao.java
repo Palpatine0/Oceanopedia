@@ -25,4 +25,6 @@ public interface ArticleDao {
 
     Article findArticleByLikesRank(int rank);
 
+    List<Integer> findViewsFromRecentArticles(int limit);
+
 }

@@ -4,7 +4,8 @@
 
         <v-container>
             <v-app-bar color="rgba(0,0,0,0)" flat>
-                <v-text-field label="Search ..." class="pt-5" filled prepend-inner-icon="mdi-magnify" dense solo flat background-color="grey lighten-4" rounded></v-text-field>
+                <v-text-field label="Search ..." class="pt-5" filled prepend-inner-icon="mdi-magnify" dense solo flat
+                              background-color="grey lighten-4" rounded></v-text-field>
                 <v-spacer></v-spacer>
             </v-app-bar>
 
@@ -41,11 +42,14 @@
                         <v-col cols="12" sm="4">
                             <v-card class="rounded-xl ml-4" color="grey lighten-3" flat>
                                 <v-card-title>
-                                    <span class="text-h6 font-weight-light">Prototyping</span>
+                                    <span class="text-h6 font-weight-light">
+                                        State of Emergency in the Gulf
+                                        <!--{{ articleB.title }}-->
+                                    </span>
                                 </v-card-title>
 
                                 <v-card-text class="">
-                                    A prototype is an early <br>sample, model, or release of a product built to test a..
+                                    {{ condenseText(articleBSummary) }}
                                 </v-card-text>
 
                                 <v-card-actions class="mt-n7">
@@ -82,27 +86,30 @@
                         <v-col cols="12" sm="4">
                             <v-card class="rounded-xl" color="error" dark elevation="10">
                                 <v-card-title>
-                                    <span class="text-h6 font-weight-light">Typography</span>
+                                    <span class="text-h6 font-weight-light">
+                                        Diversity and Evolution
+                                        <!--{{ articleA.title }}-->
+                                    </span>
                                 </v-card-title>
 
                                 <v-card-text class="">
-                                    In essence, typography is the art of arranging letters and text in a way that..
+                                    {{ condenseText(articleASummary) }}
                                 </v-card-text>
 
                                 <v-card-actions class="mt-n7">
                                     <v-list-item class="">
                                         <div color="grey darken-3">
                                             <v-avatar class="ml-n3" size="30">
-                                                <img src="https://cdn.vuetifyjs.com/images/lists/1.jpg" alt="John">
+                                                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="User 1">
                                             </v-avatar>
                                             <v-avatar class="ml-n3" size="30">
-                                                <img src="https://cdn.vuetifyjs.com/images/lists/3.jpg" alt="John">
+                                                <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="User 2">
                                             </v-avatar>
                                             <v-avatar class="ml-n3" size="30">
-                                                <img src="https://cdn.vuetifyjs.com/images/lists/4.jpg" alt="John">
+                                                <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="User 3">
                                             </v-avatar>
                                             <v-avatar class="ml-n3" size="30">
-                                                <img src="https://cdn.vuetifyjs.com/images/lists/2.jpg" alt="John">
+                                                <img src="https://randomuser.me/api/portraits/women/4.jpg" alt="User 4">
                                             </v-avatar>
                                             <v-avatar class="ml-n3" color="white" size="30">
                                                 <span class="caption black--text">+2</span>
@@ -133,16 +140,16 @@
                                     <v-list-item class="">
                                         <div color="grey darken-3">
                                             <v-avatar class="ml-n3" size="30">
-                                                <img src="https://cdn.vuetifyjs.com/images/lists/1.jpg" alt="John">
+                                                <img src="https://randomuser.me/api/portraits/men/10.jpg" alt="User 1">
                                             </v-avatar>
                                             <v-avatar class="ml-n3" size="30">
-                                                <img src="https://cdn.vuetifyjs.com/images/lists/3.jpg" alt="John">
+                                                <img src="https://randomuser.me/api/portraits/women/11.jpg" alt="User 2">
                                             </v-avatar>
                                             <v-avatar class="ml-n3" size="30">
-                                                <img src="https://cdn.vuetifyjs.com/images/lists/4.jpg" alt="John">
+                                                <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="User 3">
                                             </v-avatar>
                                             <v-avatar class="ml-n3" size="30">
-                                                <img src="https://cdn.vuetifyjs.com/images/lists/2.jpg" alt="John">
+                                                <img src="https://randomuser.me/api/portraits/women/13.jpg" alt="User 4">
                                             </v-avatar>
                                             <v-avatar class="ml-n3" color="black" size="30">
                                                 <span class="caption white--text">+1</span>
@@ -162,7 +169,9 @@
 
                     <v-card class="mx-4 rounded-xl pa-6 mt-5" color="grey lighten-3" flat>
                         <v-toolbar flat color="rgba(0,0,0,0)" dense class="mt-n5">
-                            <v-toolbar-title>Analytics</v-toolbar-title>
+                            <v-toolbar-title>
+                                Recent Article Views
+                            </v-toolbar-title>
                             <v-spacer></v-spacer>
                             <v-btn-toggle v-model="text" small dense background-color="primary" dark>
                             </v-btn-toggle>
@@ -174,7 +183,7 @@
                                 :line-width="2"
                                 :padding="8"
                                 :smooth="10 || false"
-                                :value="value"
+                                :value="recentArticleViews"
                                 auto-draw
                         ></v-sparkline>
                     </v-card>
@@ -195,9 +204,7 @@
                             <v-icon color="grey" class="ml-2">fas fa-chevron-circle-right</v-icon>
                         </v-app-bar>
 
-                        <v-app-bar shaped class="
-
-mt-3" elevation="0">
+                        <v-app-bar shaped class="mt-3" elevation="0">
                             <v-btn tile fab small elevation="0">
                                 <v-icon color="black">fas fa-hands-wash</v-icon>
                             </v-btn>
@@ -220,7 +227,8 @@ mt-3" elevation="0">
                         </v-app-bar>
 
                         <div class="text-center mt-5 mb-5">
-                            <v-date-picker v-model="date2" :event-color="date => date[9] % 2 ? 'red' : 'yellow'" :events="functionEvents"></v-date-picker>
+                            <v-date-picker v-model="date2" :event-color="date => date[9] % 2 ? 'red' : 'yellow'"
+                                           :events="functionEvents"></v-date-picker>
                         </div>
                     </v-card>
                 </v-col>
@@ -230,7 +238,7 @@ mt-3" elevation="0">
 </template>
 
 <script>
-import { mapState } from "vuex";
+import {mapState} from "vuex";
 
 export default {
     components: {},
@@ -242,9 +250,12 @@ export default {
             articleList: [],
             showStates: {},
             articleA: {},
+            articleASummary: "The Deepwater Horizon explosion caused a massive oil spill off the coast of Louisiana, leaking over 5,000 barrels of oil per day and severely impacting coastal ecosystems, wildlife, and fisheries. The disaster has prompted emergency declarations in multiple Gulf states and ongoing efforts to contain and mitigate the damage.",
             articleB: {},
+            articleBSummary:"Cephalopods, such as octopuses and squids, are intelligent mollusks with three hearts and blue blood, capable of changing color for camouflage and communication​ (Smithsonian Ocean)​​ (Smithsonian Natural History)​. Learn more on the Smithsonian Ocean Portal.",
             articleC: {},
-            value: [0, 2, 5, 9, 5, 10, 3, 5, 0, 0, 1, 8, 2, 9, 0],
+            articleCSummary:"",
+            recentArticleViews: [200, 14, 30, 20, 166, 18, 114, 198, 160, 173, 122, 98, 171, 84, 175],
             date2: new Date().toISOString().substr(0, 10),
             isUserLoggedIn: false, // Assume some logic to check if the user is logged in
         };
@@ -257,39 +268,34 @@ export default {
             return false;
         },
         fetchArticles() {
-            this.api
-            .getArticleByLikesRank({ rank: 1 })
+            this.$api.getArticleByLikesRank({rank: 1})
             .then((res) => {
                 this.articleA = res.data.data;
-                console.log("this.articleA", this.articleA);
+                this.articleASummary = this.articleA.summary
             })
-            .catch((error) => {
-                console.error("Error fetching articleA:", error);
-            });
-
-            this.api
-            .getArticleByLikesRank({ rank: 2 })
+            this.$api.getArticleByLikesRank({rank: 2})
             .then((res) => {
                 this.articleB = res.data.data;
-                console.log("this.articleB", this.articleB);
+                this.articleBSummary = this.articleB.summary
             })
-            .catch((error) => {
-                console.error("Error fetching articleB:", error);
-            });
-
-            this.api
-            .getArticleByLikesRank({ rank: 3 })
+            this.$api.getArticleByLikesRank({rank: 3})
             .then((res) => {
                 this.articleC = res.data.data;
-                console.log("this.articleC", this.articleC);
+                this.articleCSummary = this.articleC.summary
             })
-            .catch((error) => {
-                console.error("Error fetching articleC:", error);
-            });
+            this.$api.getRecentArticleViews()
+            .then((res) => {
+                this.recentArticleViews = res.data.data;
+            })
+
         },
+        condenseText(text) {
+            const words = text.split(' ');
+            return words.slice(0, 15).join(' ') + '...';
+        }
+
     },
     mounted() {
-        console.log("GOOO");
         this.fetchArticles();
     },
     computed: {

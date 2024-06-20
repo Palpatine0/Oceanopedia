@@ -54,7 +54,9 @@ const api = {
     getArticleByLikesRank(params) {
         return axios.get(base.baseUrl + base.getArticleByLikesRank + "?" + qs.stringify(params));
     },
-
+    getRecentArticleViews(params) {
+        return axios.get(base.baseUrl + base.getRecentArticleViews + "?" + qs.stringify(params));
+    },
 
 
     // Comment

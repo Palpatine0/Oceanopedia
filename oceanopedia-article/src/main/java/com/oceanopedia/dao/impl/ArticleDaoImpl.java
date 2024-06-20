@@ -10,7 +10,11 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 @Repository
 public class ArticleDaoImpl implements ArticleDao {
@@ -96,5 +100,20 @@ public class ArticleDaoImpl implements ArticleDao {
         query.skip(rank - 1);
         query.limit(1);
         return mongoTemplate.findOne(query, Article.class);
+    }
+
+    @Override
+    public List<Integer> findViewsFromRecentArticles(int limit) {
+        Query query = new Query();
+        query.with(Sort.by(Sort.Direction.DESC, "publicationDate"));
+        query.limit(limit);
+        query.fields().include("views");
+
+        List<Article> articles = mongoTemplate.find(query, Article.class);
+        List<Integer> views = new ArrayList<>();
+        for (Article article : articles) {
+            views.add(article.getViews());
+        }
+        return views;
     }
 }

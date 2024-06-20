@@ -21,6 +21,7 @@ const base = {
     updateArticleInfoById: '/article/updateArticleInfoById',
     updateArticleCoverImageById: '/article/updateArticleCoverImageById',
     getArticleByLikesRank: '/article/getArticleByLikesRank',
+    getRecentArticleViews: '/article/getRecentArticleViews',
 
 
     // comment

@@ -12,7 +12,9 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -130,5 +132,30 @@ public class ArticleServiceImpl implements ArticleService {
         ok.setData(articleDao.findArticleByLikesRank(rank));
         return ok;
     }
+
+    @Override
+    public BaseResult getViewsFromRecentArticles(int maxArticles) {
+        List<Integer> views = articleDao.findViewsFromRecentArticles(maxArticles);
+        Random random = new Random();
+
+        if (!views.isEmpty()) {
+            int minView = Collections.min(views);
+            int maxView = Collections.max(views);
+
+            while (views.size() < maxArticles) {
+                int randomViews = random.nextInt((maxView - minView) + 1) + minView;
+                views.add(randomViews);
+            }
+        } else {
+            // In case there are no views at all, we add zero values.
+            while (views.size() < maxArticles) {
+                views.add(0);
+            }
+        }
+        BaseResult baseResult = new BaseResult();
+        baseResult.setData(views);
+        return baseResult;
+    }
+
 
 }

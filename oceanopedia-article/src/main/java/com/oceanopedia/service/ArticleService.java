@@ -4,6 +4,8 @@ package com.oceanopedia.service;
 import com.oceanopedia.entity.Article;
 import com.oceanopedia.vo.BaseResult;
 
+import java.util.List;
+
 public interface ArticleService {
     Article getArticleByID(String id);
 
@@ -21,4 +23,5 @@ public interface ArticleService {
 
     BaseResult getArticleByLikesRank(int rank);
 
+    BaseResult getViewsFromRecentArticles(int maxArticles);
 }

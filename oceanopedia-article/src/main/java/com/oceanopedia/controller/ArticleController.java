@@ -124,4 +124,9 @@ public class ArticleController {
     public BaseResult getArticleByLikesRank(@RequestParam int rank) {
         return articleService.getArticleByLikesRank(rank);
     }
+
+    @GetMapping("/getRecentArticleViews")
+    public BaseResult getRecentArticleViews(@RequestParam(defaultValue = "15") int maxArticles) {
+        return articleService.getViewsFromRecentArticles(maxArticles);
+    }
 }
