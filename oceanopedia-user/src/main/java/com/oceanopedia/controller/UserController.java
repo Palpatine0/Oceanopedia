@@ -2,7 +2,7 @@ package com.oceanopedia.controller;
 
 
 import com.oceanopedia.service.UserService;
-import com.oceanopedia.vo.OceanopediaResult;
+import com.oceanopedia.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,22 +15,22 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public OceanopediaResult register(String username, String password, String avatar, String type) {
+    public BaseResult register(String username, String password, String avatar, String type) {
         return userService.register(username, password, avatar, type);
     }
 
     @PostMapping("/login")
-    public OceanopediaResult login(String username, String password, String phone, String verificationCode) {
+    public BaseResult login(String username, String password, String phone, String verificationCode) {
         return userService.login(username, password, phone, verificationCode);
     }
 
     @GetMapping("/getUsers")
-    public OceanopediaResult getUsers(int page, @RequestParam(defaultValue = "8") int rows) {
+    public BaseResult getUsers(int page, @RequestParam(defaultValue = "8") int rows) {
         return userService.getUsers(page, rows);
     }
 
     @PostMapping("/deleteUserById")
-    public OceanopediaResult deleteUserById(String id) {
+    public BaseResult deleteUserById(String id) {
         return userService.deleteUserById(id);
     }
 
@@ -40,12 +40,12 @@ public class UserController {
     }
 
     @GetMapping("/getUserByUsername")
-    public OceanopediaResult getUserByUsername(String username) {
+    public BaseResult getUserByUsername(String username) {
         return userService.getUserByUsername(username);
     }
 
     @GetMapping("/getUserById")
-    public OceanopediaResult getUserById(String id) {
+    public BaseResult getUserById(String id) {
         return userService.getUserById(id);
     }
 }

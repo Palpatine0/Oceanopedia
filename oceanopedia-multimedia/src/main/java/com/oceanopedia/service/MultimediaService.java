@@ -1,16 +1,16 @@
 package com.oceanopedia.service;
 
 
-import com.oceanopedia.vo.OceanopediaResult;
+import com.oceanopedia.vo.BaseResult;
 
 import java.io.IOException;
 
 public interface MultimediaService {
-    OceanopediaResult getBanners();
+    BaseResult getBanners();
 
-    OceanopediaResult uploadImage(byte[] fileBytes, String fileName) throws IOException;
+    BaseResult uploadImage(byte[] fileBytes, String fileName) throws IOException;
 
-    OceanopediaResult uploadImageNoPrefix(byte[] fileBytes, String fileName) throws IOException;
+    BaseResult uploadImageNoPrefix(byte[] fileBytes, String fileName) throws IOException;
 
-    OceanopediaResult delete(String filePath);
+    BaseResult delete(String filePath);
 }

@@ -4,7 +4,7 @@ import com.oceanopedia.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.oceanopedia.entity.Article;
-import com.oceanopedia.vo.OceanopediaResult;
+import com.oceanopedia.vo.BaseResult;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,17 +22,17 @@ public class ArticleController {
     }
 
     @DeleteMapping("/deleteArticleByID")
-    public OceanopediaResult deleteArticleByID(String id) {
+    public BaseResult deleteArticleByID(String id) {
         return articleService.deleteArticleByID(id);
     }
 
     @GetMapping("/getArticlesByCategory")
-    public OceanopediaResult getArticlesByCategory(String category, int page, @RequestParam(defaultValue = "3") int rows) {
+    public BaseResult getArticlesByCategory(String category, int page, @RequestParam(defaultValue = "3") int rows) {
         return articleService.getArticlesByCategory(category, page, rows);
     }
 
     @PostMapping("/addArticle")
-    public OceanopediaResult addArticle(
+    public BaseResult addArticle(
             String title, String content, String author, String summary, int views, int likes, boolean status,
             @RequestParam(required = false) String publicationDate, @RequestParam(required = false) String updatedDate,
             String category, String coverImage, @RequestParam(required = false) List<String> tags) throws ParseException {
@@ -71,12 +71,12 @@ public class ArticleController {
     }
 
     @PostMapping("/updateArticleStatusById")
-    public OceanopediaResult updateArticleStatusById(String id, boolean status) {
+    public BaseResult updateArticleStatusById(String id, boolean status) {
         return articleService.updateArticleStatusById(id, status);
     }
 
     @PostMapping("/updateArticleInfoById")
-    public OceanopediaResult updateArticleInfoById(
+    public BaseResult updateArticleInfoById(
             String id, String title, String content, String author, String summary, int views, int likes, boolean status,
             @RequestParam(required = false) String publicationDate, @RequestParam(required = false) String updatedDate,
             String category, String coverImage, @RequestParam(required = false) List<String> tags) throws ParseException {
@@ -116,7 +116,12 @@ public class ArticleController {
     }
 
     @PostMapping("/updateArticleCoverImageById")
-    public OceanopediaResult updateArticleCoverImageById(String id, String coverImage) {
+    public BaseResult updateArticleCoverImageById(String id, String coverImage) {
         return articleService.updateArticleCoverImageById(id, coverImage);
+    }
+
+    @GetMapping("/getArticleByLikesRank")
+    public BaseResult getArticleByLikesRank(@RequestParam int rank) {
+        return articleService.getArticleByLikesRank(rank);
     }
 }

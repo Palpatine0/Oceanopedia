@@ -1,8 +1,8 @@
 spring:
   data:
     mongodb:
-      host: 111.231.19.137
-      # host: localhost
+      # host: 111.231.19.137
+      host: localhost
       port: 27018
       username: root
       password: root

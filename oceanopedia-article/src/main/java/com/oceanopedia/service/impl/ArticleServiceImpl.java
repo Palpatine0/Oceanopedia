@@ -3,7 +3,7 @@ package com.oceanopedia.service.impl;
 import com.oceanopedia.dao.ArticleDao;
 import com.oceanopedia.entity.Article;
 import com.oceanopedia.service.ArticleService;
-import com.oceanopedia.vo.OceanopediaResult;
+import com.oceanopedia.vo.BaseResult;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,16 +35,16 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public OceanopediaResult deleteArticleByID(String id) {
+    public BaseResult deleteArticleByID(String id) {
         try {
             articleDao.deleteArticleByID(id);
-            OceanopediaResult ok = new OceanopediaResult();
+            BaseResult ok = new BaseResult();
             ok.setMsg("Article deleted successfully.");
             ok.setStatus(200);
             return ok;
         } catch (Exception e) {
             e.printStackTrace();
-            OceanopediaResult error = new OceanopediaResult();
+            BaseResult error = new BaseResult();
             error.setMsg("Failed to delete Article.");
             error.setStatus(500);
             return error;
@@ -52,9 +52,9 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public OceanopediaResult getArticlesByCategory(String category, int page, int rows) {
+    public BaseResult getArticlesByCategory(String category, int page, int rows) {
         List<Article> ArticleList = articleDao.findArticlesByCategory(category, page, rows);
-        OceanopediaResult ok = new OceanopediaResult();
+        BaseResult ok = new BaseResult();
         ok.setCnt(articleDao.countArticleByCategory(category));
         ok.setData(ArticleList);
         return ok;
@@ -62,15 +62,15 @@ public class ArticleServiceImpl implements ArticleService {
 
 
     @Override
-    public OceanopediaResult addArticle(Article Article) {
+    public BaseResult addArticle(Article Article) {
         try {
             articleDao.saveArticle(Article);
-            OceanopediaResult ok = OceanopediaResult.ok();
+            BaseResult ok = BaseResult.ok();
             ok.setMsg("Article added successfully.");
             return ok;
         } catch (Exception e) {
             e.printStackTrace();
-            OceanopediaResult error = OceanopediaResult.error();
+            BaseResult error = BaseResult.error();
             error.setMsg("Failed to add Article.");
             return error;
         }
@@ -78,15 +78,15 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     @CacheEvict(cacheNames = "com:oceanopedia", key = "'getDetails('+#id+')'")
-    public OceanopediaResult updateArticleStatusById(String id, boolean status) {
+    public BaseResult updateArticleStatusById(String id, boolean status) {
         try {
             articleDao.updateArticleStatusById(id, status);
-            OceanopediaResult ok = OceanopediaResult.ok();
+            BaseResult ok = BaseResult.ok();
             ok.setMsg("Status update successfully.");
             return ok;
         } catch (Exception e) {
             e.printStackTrace();
-            OceanopediaResult error = OceanopediaResult.error();
+            BaseResult error = BaseResult.error();
             error.setMsg("Status update failed.");
             return error;
         }
@@ -94,15 +94,15 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     @CacheEvict(cacheNames = "com:oceanopedia", key = "'getDetails('+#id+')'")
-    public OceanopediaResult updateArticleInfoById(String id, Article Article) {
+    public BaseResult updateArticleInfoById(String id, Article Article) {
         try {
             articleDao.updateArticleInfoById(id, Article);
-            OceanopediaResult ok = OceanopediaResult.ok();
+            BaseResult ok = BaseResult.ok();
             ok.setMsg("Info update successfully.");
             return ok;
         } catch (Exception e) {
             e.printStackTrace();
-            OceanopediaResult error = OceanopediaResult.error();
+            BaseResult error = BaseResult.error();
             error.setMsg("Info update failed");
             return error;
         }
@@ -110,18 +110,25 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     @CacheEvict(cacheNames = "com:oceanopedia", key = "'getDetails('+#id+')'")
-    public OceanopediaResult updateArticleCoverImageById(String id, String coverImage){
+    public BaseResult updateArticleCoverImageById(String id, String coverImage){
         try {
-            OceanopediaResult ok = OceanopediaResult.ok();
+            BaseResult ok = BaseResult.ok();
             articleDao.updateArticleCoverImageById(id, coverImage);
             ok.setMsg("Showcases update successfully.");
             return ok;
         } catch (Exception e) {
             e.printStackTrace();
-            OceanopediaResult error = OceanopediaResult.error();
+            BaseResult error = BaseResult.error();
             error.setMsg("Showcases update successfully.");
-            return OceanopediaResult.error("Showcases update failed");
+            return BaseResult.error("Showcases update failed");
         }
+    }
+
+    @Override
+    public BaseResult getArticleByLikesRank(int rank) {
+        BaseResult ok = new BaseResult();
+        ok.setData(articleDao.findArticleByLikesRank(rank));
+        return ok;
     }
 
 }

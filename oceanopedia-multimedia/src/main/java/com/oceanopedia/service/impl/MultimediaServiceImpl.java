@@ -6,7 +6,7 @@ import com.github.tobato.fastdfs.domain.fdfs.StorePath;
 import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import com.oceanopedia.entity.Image;
 import com.oceanopedia.service.MultimediaService;
-import com.oceanopedia.vo.OceanopediaResult;
+import com.oceanopedia.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
@@ -32,8 +32,8 @@ public class MultimediaServiceImpl implements MultimediaService {
     private String nginxPrefix;
 
     @Override
-    public OceanopediaResult getBanners() {
-        OceanopediaResult result = new OceanopediaResult();
+    public BaseResult getBanners() {
+        BaseResult result = new BaseResult();
         try {
             // S1: get data
             Query query = new Query();
@@ -60,7 +60,7 @@ public class MultimediaServiceImpl implements MultimediaService {
     }
 
     @Override
-    public OceanopediaResult uploadImage(byte[] fileBytes, String fileName) throws IOException {
+    public BaseResult uploadImage(byte[] fileBytes, String fileName) throws IOException {
         if (fileBytes.length != 0) {
             try {
                 //1.convert the byte array in to input stream
@@ -75,21 +75,21 @@ public class MultimediaServiceImpl implements MultimediaService {
                 Image image = new Image();
                 image.setUrl(fullPath);
                 multimediaDao.saveImage(image);
-                return OceanopediaResult.ok(imageUrl);
+                return BaseResult.ok(imageUrl);
             } catch (IOException ioException) {
-                OceanopediaResult error = OceanopediaResult.error();
+                BaseResult error = BaseResult.error();
                 error.setMsg("File upload failed");
                 return error;
             }
         } else {
-            OceanopediaResult error = OceanopediaResult.error();
+            BaseResult error = BaseResult.error();
             error.setMsg("File upload failed");
             return error;
         }
     }
 
     @Override
-    public OceanopediaResult uploadImageNoPrefix(byte[] fileBytes, String fileName) throws IOException {
+    public BaseResult uploadImageNoPrefix(byte[] fileBytes, String fileName) throws IOException {
         if (fileBytes.length != 0) {
             try {
                 //1.convert the byte array in to input stream
@@ -104,25 +104,25 @@ public class MultimediaServiceImpl implements MultimediaService {
                 Image image = new Image();
                 image.setUrl(fullPath);
                 multimediaDao.saveImage(image);
-                OceanopediaResult ok = OceanopediaResult.ok(imageUrl);
+                BaseResult ok = BaseResult.ok(imageUrl);
                 ok.setMsg("File uploaded success");
                 ok.setData(imageUrl);
                 return ok;
             } catch (IOException ioException) {
-                OceanopediaResult error = OceanopediaResult.error();
+                BaseResult error = BaseResult.error();
                 error.setMsg("File upload failed");
                 return error;
             }
         } else {
-            OceanopediaResult error = OceanopediaResult.error();
+            BaseResult error = BaseResult.error();
             error.setMsg("File upload failed");
             return error;
         }
     }
 
     @Override
-    public OceanopediaResult delete(String filePath) {
+    public BaseResult delete(String filePath) {
         fastFileStorageClient.deleteFile(filePath);
-        return OceanopediaResult.ok();
+        return BaseResult.ok();
     }
 }

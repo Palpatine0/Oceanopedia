@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const api = {
 
-    // multimedia
+    // Multimedia
     getBanner() {
         return axios.get(base.baseUrl + base.getBanner)
     },
@@ -18,15 +18,7 @@ const api = {
         })
     },
 
-    //
-    getRecommendation(params) {
-        return axios.get(base.baseUrl + base.getRecommendation + "?city=" + params.city);
-    },
-    hotProduct(params) {
-        return axios.get(base.baseUrl + base.getTrendy + "?city=" + params.city);
-    },
-
-    // search
+    // Search
     searchByKeyWord(params) {
         return axios.get(base.baseUrl + base.searchByKeyWord + "?" + qs.stringify(params));
     },
@@ -37,15 +29,7 @@ const api = {
         return axios.get(base.baseUrl + base.adminSearchByCity + "?" + qs.stringify(params));
     },
 
-    //
-    buytime(params) {
-        return axios.get(base.baseUrl + base.getBuyTime + '?id=' + params.id);
-    },
-    buyaction(params) {
-        return axios.get(base.baseUrl + base.buyAction + "?" + qs.stringify(params));
-    },
-
-    // item
+    // Article
     getArticleByID(params) {
         return axios.get(base.baseUrl + base.getArticleByID + "?" + qs.stringify(params));
     },
@@ -67,9 +51,13 @@ const api = {
     updateArticleCoverImageById(params) {
         return axios.post(base.baseUrl + base.updateArticleCoverImageById + "?" + qs.stringify(params));
     },
+    getArticleByLikesRank(params) {
+        return axios.get(base.baseUrl + base.getArticleByLikesRank + "?" + qs.stringify(params));
+    },
 
 
-    // comment
+
+    // Comment
     addComment(params) {
         return axios.post(base.baseUrl + base.feedback, qs.stringify(params));
     },
@@ -78,7 +66,7 @@ const api = {
     },
 
 
-    // user
+    // User
     login(params) {
         return axios.post(base.baseUrl + base.login, qs.stringify(params));
     },
@@ -97,13 +85,6 @@ const api = {
     getUserById(params) {
         return axios.get(base.baseUrl + base.getUserById + "?" + qs.stringify(params));
     },
-
-    // order
-    getOrder(params) {
-        return axios.get(base.baseUrl + base.order + "?" + qs.stringify(params));
-    },
-
-
 }
 
 export default api;

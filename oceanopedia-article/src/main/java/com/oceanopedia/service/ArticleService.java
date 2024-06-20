@@ -2,21 +2,23 @@ package com.oceanopedia.service;
 
 
 import com.oceanopedia.entity.Article;
-import com.oceanopedia.vo.OceanopediaResult;
+import com.oceanopedia.vo.BaseResult;
 
 public interface ArticleService {
     Article getArticleByID(String id);
 
-    OceanopediaResult deleteArticleByID(String id);
+    BaseResult deleteArticleByID(String id);
 
-    OceanopediaResult getArticlesByCategory(String city, int page, int rows);
+    BaseResult getArticlesByCategory(String city, int page, int rows);
 
-    OceanopediaResult addArticle(Article article);
+    BaseResult addArticle(Article article);
 
-    OceanopediaResult updateArticleStatusById(String id, boolean status);
+    BaseResult updateArticleStatusById(String id, boolean status);
 
-    OceanopediaResult updateArticleInfoById(String id, Article article);
+    BaseResult updateArticleInfoById(String id, Article article);
 
-    OceanopediaResult updateArticleCoverImageById(String id, String coverImageUrl);
+    BaseResult updateArticleCoverImageById(String id, String coverImageUrl);
+
+    BaseResult getArticleByLikesRank(int rank);
 
 }

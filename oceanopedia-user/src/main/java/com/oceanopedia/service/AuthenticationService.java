@@ -3,7 +3,7 @@ package com.oceanopedia.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oceanopedia.dao.UserDao;
-import com.oceanopedia.vo.OceanopediaResult;
+import com.oceanopedia.vo.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -31,7 +31,7 @@ public class AuthenticationService implements AuthenticationSuccessHandler, Auth
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         System.out.println("Processing after successful authentication");
-        OceanopediaResult ok = OceanopediaResult.ok();
+        BaseResult ok = BaseResult.ok();
         ok.setMsg("Authentication passed");
 
         // set respond, set it as JSON type as it write out
@@ -43,7 +43,7 @@ public class AuthenticationService implements AuthenticationSuccessHandler, Auth
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         System.out.println("Processing after a failed authentication");
-        OceanopediaResult error = OceanopediaResult.error();
+        BaseResult error = BaseResult.error();
         error.setMsg("Authentication failed");
         // set respond, set it as JSON type as it write out
         response.setContentType("application/json;charset=utf-8");

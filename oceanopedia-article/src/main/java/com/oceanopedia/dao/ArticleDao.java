@@ -23,5 +23,6 @@ public interface ArticleDao {
 
     void updateArticleCoverImageById(String id, String coverImage);
 
+    Article findArticleByLikesRank(int rank);
 
 }

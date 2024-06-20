@@ -1,20 +1,20 @@
 package com.oceanopedia.service;
 
 
-import com.oceanopedia.vo.OceanopediaResult;
+import com.oceanopedia.vo.BaseResult;
 
 public interface UserService {
 
-    OceanopediaResult login(String username, String password, String phone, String verificationCode);
+    BaseResult login(String username, String password, String phone, String verificationCode);
 
-    OceanopediaResult register(String username, String password, String avatar, String type);
+    BaseResult register(String username, String password, String avatar, String type);
 
-    OceanopediaResult deleteUserById(String id);
+    BaseResult deleteUserById(String id);
 
-    OceanopediaResult getUsers(int page, int rows);
+    BaseResult getUsers(int page, int rows);
 
-    OceanopediaResult getUserByUsername(String username);
+    BaseResult getUserByUsername(String username);
 
-    OceanopediaResult getUserById(String id);
+    BaseResult getUserById(String id);
 
 }

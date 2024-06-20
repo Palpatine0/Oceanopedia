@@ -20,6 +20,7 @@ const base = {
     updateArticleStatusById: '/article/updateArticleStatusById',
     updateArticleInfoById: '/article/updateArticleInfoById',
     updateArticleCoverImageById: '/article/updateArticleCoverImageById',
+    getArticleByLikesRank: '/article/getArticleByLikesRank',
 
 
     // comment

@@ -22,7 +22,7 @@ export default new Vuex.Store({
             {
                 icon: 'fa-lg fas fa-file',
                 text: 'Article',
-                route: '/'
+                route: '/article'
             },
         ],
         categories: [

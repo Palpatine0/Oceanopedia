@@ -3,6 +3,7 @@ package com.oceanopedia.dao.impl;
 import com.oceanopedia.dao.ArticleDao;
 import com.oceanopedia.entity.Article;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -86,5 +87,14 @@ public class ArticleDaoImpl implements ArticleDao {
         Update update = new Update();
         update.set("coverImage", coverImage);
         mongoTemplate.findAndModify(query, update, Article.class);
+    }
+
+    @Override
+    public Article findArticleByLikesRank(int rank) {
+        Query query = new Query();
+        query.with(Sort.by(Sort.Direction.DESC, "likes"));
+        query.skip(rank - 1);
+        query.limit(1);
+        return mongoTemplate.findOne(query, Article.class);
     }
 }

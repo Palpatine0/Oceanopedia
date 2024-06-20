@@ -97,3 +97,7 @@ spring:
           uri: lb://oceanopedia-article
           predicates:
             - Path=/article/updateArticleCoverImageById
+        - id: article-getArticleByLikesRank
+          uri: lb://oceanopedia-article
+          predicates:
+            - Path=/article/getArticleByLikesRank
