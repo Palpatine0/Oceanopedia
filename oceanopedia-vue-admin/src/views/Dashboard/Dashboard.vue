@@ -1,6 +1,6 @@
 <template>
     <v-app :style="{ padding: isUserLoggedIn ? '20px' : '0px', minHeight: '100vh' }">
-        <v-subheader v-if="isUserLoggedIn" as="h1" class="subheading grey--text">Dashboard</v-subheader>
+        <v-subheader as="h1" class="subheading grey--text">Dashboard</v-subheader>
 
         <v-container>
             <v-app-bar color="rgba(0,0,0,0)" flat>
@@ -40,7 +40,7 @@
 
                     <v-row class="mt-n5">
                         <v-col cols="12" sm="4">
-                            <v-card class="rounded-xl ml-4" color="grey lighten-3" flat>
+                            <v-card class="rounded-xl ml-4" color="grey lighten-3" flat :href="articleB.link">
                                 <v-card-title>
                                     <span class="text-h6 font-weight-light">
                                         State of Emergency in the Gulf
@@ -74,9 +74,11 @@
 
                                         <v-row align="center" justify="end">
                                             <v-icon class="mr-1" small>
-                                                fas fa-hands-wash
+                                                fas fa-thumbs-up
                                             </v-icon>
-                                            <span class="caption">1.5 K</span>
+                                            <span class="caption">
+                                                {{articleB.views}}
+                                            </span>
                                         </v-row>
                                     </v-list-item>
                                 </v-card-actions>
@@ -84,11 +86,10 @@
                         </v-col>
 
                         <v-col cols="12" sm="4">
-                            <v-card class="rounded-xl" color="error" dark elevation="10">
+                            <v-card class="rounded-xl" color="error" dark elevation="10" :href="articleA.link">
                                 <v-card-title>
                                     <span class="text-h6 font-weight-light">
-                                        Diversity and Evolution
-                                        <!--{{ articleA.title }}-->
+                                        {{ articleA.title }}
                                     </span>
                                 </v-card-title>
 
@@ -117,9 +118,11 @@
                                         </div>
                                         <v-row align="center" justify="end">
                                             <v-icon class="mr-1" small>
-                                                fas fa-hands-wash
+                                                fas fa-thumbs-up
                                             </v-icon>
-                                            <span class="caption">1.2 K</span>
+                                            <span class="caption">
+                                                {{articleA.views}}
+                                            </span>
                                         </v-row>
                                     </v-list-item>
                                 </v-card-actions>
@@ -127,13 +130,15 @@
                         </v-col>
 
                         <v-col cols="12" sm="4">
-                            <v-card class="rounded-xl mr-4" color="grey lighten-3" flat>
+                            <v-card class="rounded-xl mr-4" color="grey lighten-3" flat :href="articleC.link">
                                 <v-card-title>
-                                    <span class="text-h6 font-weight-light">Color Palette</span>
+                                    <span class="text-h6 font-weight-light">
+                                        {{ articleC.title }}
+                                    </span>
                                 </v-card-title>
 
                                 <v-card-text class="">
-                                    The best way to use a scheme like this is to use one color as the primary..
+                                    {{ condenseText(articleCSummary) }}
                                 </v-card-text>
 
                                 <v-card-actions class="mt-n7">
@@ -157,9 +162,11 @@
                                         </div>
                                         <v-row align="center" justify="end">
                                             <v-icon class="mr-1" small>
-                                                fas fa-hands-wash
+                                                fas fa-thumbs-up
                                             </v-icon>
-                                            <span class="caption">1.2 K</span>
+                                            <span class="caption">
+                                                {{articleC.views}}
+                                            </span>
                                         </v-row>
                                     </v-list-item>
                                 </v-card-actions>
@@ -206,7 +213,7 @@
 
                         <v-app-bar shaped class="mt-3" elevation="0">
                             <v-btn tile fab small elevation="0">
-                                <v-icon color="black">fas fa-hands-wash</v-icon>
+                                <v-icon color="black">fas fa-thumbs-up</v-icon>
                             </v-btn>
                             <strong class="subtitle black--text ml-2">
                                 Total Likes<span class="caption"><br>1.5k</span>
@@ -255,7 +262,7 @@ export default {
             articleBSummary:"Cephalopods, such as octopuses and squids, are intelligent mollusks with three hearts and blue blood, capable of changing color for camouflage and communication​ (Smithsonian Ocean)​​ (Smithsonian Natural History)​. Learn more on the Smithsonian Ocean Portal.",
             articleC: {},
             articleCSummary:"",
-            recentArticleViews: [200, 14, 30, 20, 166, 18, 114, 198, 160, 173, 122, 98, 171, 84, 175],
+            recentArticleViews: [14, 200, 30, 20, 166, 18, 114, 198, 160, 173, 122, 98, 171, 84, 75],
             date2: new Date().toISOString().substr(0, 10),
             isUserLoggedIn: false, // Assume some logic to check if the user is logged in
         };

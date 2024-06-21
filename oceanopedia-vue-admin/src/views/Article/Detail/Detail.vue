@@ -202,9 +202,6 @@ export default {
         };
     },
     methods: {
-        commasNumber(x) {
-            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        },
         deleteItemByID() {
             this.$api.deleteArticleByID({id: this.$route.params.id})
             .then(data => {
@@ -222,7 +219,7 @@ export default {
             })
             .then((data) => {
                 if (data.data.status == 200) {
-                    this.editArticleStatus_msg = data.data.data;
+                    this.editArticleStatus_msg = data.data.msg;
                     this.editArticleStatus_snackbar = true
                     setTimeout(() => {
                         window.location.reload();

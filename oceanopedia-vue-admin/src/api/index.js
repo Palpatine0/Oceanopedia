@@ -79,7 +79,7 @@ const api = {
         return axios.post(base.baseUrl + base.deleteUserById, qs.stringify(params));
     },
     getUsers(params) {
-        return axios.get(base.baseUrl + base.getUsers+ "?" + qs.stringify(params));
+        return axios.get(base.baseUrl + base.getUsers + "?" + qs.stringify(params));
     },
     getUserByUsername(params) {
         return axios.get(base.baseUrl + base.getUserByUsername + "?" + qs.stringify(params));

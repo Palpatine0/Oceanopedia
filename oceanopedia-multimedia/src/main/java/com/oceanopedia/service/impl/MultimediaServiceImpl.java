@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -60,6 +61,11 @@ public class MultimediaServiceImpl implements MultimediaService {
     }
 
     @Override
+    public BaseResult uploadBanners(MultipartFile banner1, MultipartFile banner2, MultipartFile banner3) {
+        return null;
+    }
+
+    @Override
     public BaseResult uploadImage(byte[] fileBytes, String fileName) throws IOException {
         if (fileBytes.length != 0) {
             try {
@@ -104,6 +110,7 @@ public class MultimediaServiceImpl implements MultimediaService {
                 Image image = new Image();
                 image.setUrl(fullPath);
                 multimediaDao.saveImage(image);
+
                 BaseResult ok = BaseResult.ok(imageUrl);
                 ok.setMsg("File uploaded success");
                 ok.setData(imageUrl);
@@ -125,4 +132,6 @@ public class MultimediaServiceImpl implements MultimediaService {
         fastFileStorageClient.deleteFile(filePath);
         return BaseResult.ok();
     }
+
+
 }

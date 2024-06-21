@@ -8,8 +8,22 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
+  autoconfigure:
+    exclude=org:
+      springframework:
+        boot:
+          actuate:
+            autoconfigure:
+              endpoint:
+                web:
+                  ServletEndpointManagementContextConfiguration,org:
+                    springframework:
+                      cloud:
+                        autoconfigure:
+                          RefreshAutoConfiguration: org.springframework.cloud.autoconfigure.RefreshAutoConfiguration
 
 eureka:
   client:
     fetch-registry: true
     register-with-eureka: true
+

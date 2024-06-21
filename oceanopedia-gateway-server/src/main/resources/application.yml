@@ -4,6 +4,10 @@ server:
 spring:
   application:
     name: oceanopedia-gateway-server
+  http:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
   cloud:
     gateway:
       discovery:
@@ -87,6 +91,10 @@ spring:
           uri: lb://oceanopedia-article
           predicates:
             - Path=/article/getArticleByLikesRank
+        - id: article-getRecentArticleViews
+          uri: lb://oceanopedia-article
+          predicates:
+            - Path=/article/getRecentArticleViews
     config:
       uri: http://localhost:8764
       label: master

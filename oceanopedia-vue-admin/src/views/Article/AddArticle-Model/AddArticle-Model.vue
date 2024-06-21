@@ -16,31 +16,31 @@
                             <v-container>
                                 <v-row>
                                     <v-col cols="12">
-                                        <v-text-field v-model="item.title" label="Title" required></v-text-field>
+                                        <v-text-field v-model="articleInfo.title" label="Title" required></v-text-field>
                                     </v-col>
                                     <v-col cols="12">
-                                        <v-text-field v-model="item.author" label="Author" required></v-text-field>
+                                        <v-text-field v-model="articleInfo.author" label="Author" required></v-text-field>
                                     </v-col>
                                     <v-col cols="12">
-                                        <v-textarea outlined label="Content" v-model="item.content"></v-textarea>
+                                        <v-textarea outlined label="Content" v-model="articleInfo.content"></v-textarea>
                                     </v-col>
                                     <v-col cols="12">
-                                        <v-textarea outlined label="Summary" v-model="item.summary"></v-textarea>
+                                        <v-textarea outlined label="Summary" v-model="articleInfo.summary"></v-textarea>
                                     </v-col>
                                     <v-col cols="12" md="6" sm="6">
-                                            <v-select v-model="item.status" :items="statusOptions" label="Status" required></v-select>
+                                            <v-select v-model="articleInfo.status" :items="statusOptions" label="Status" required></v-select>
                                     </v-col>
                                     <v-col cols="12" md="6" sm="6">
-                                        <v-select v-model="item.category" :items="categories" label="Category" required></v-select>
+                                        <v-select v-model="articleInfo.category" :items="categories" label="Category" required></v-select>
                                     </v-col>
                                     <v-col cols="12">
-                                        <div v-if="item.coverImage != ''">
-                                            <v-img :src="img_prefix + item.coverImage" aspect-ratio="2"></v-img>
+                                        <div v-if="articleInfo.coverImage != ''">
+                                            <v-img :src="img_prefix + articleInfo.coverImage" aspect-ratio="2"></v-img>
                                         </div>
                                         <v-file-input show-size truncate-length="50" @change="file => uploadImageNoPrefix(file)" label="Cover Image"></v-file-input>
                                     </v-col>
                                     <v-col cols="12">
-                                        <v-select v-model="item.tags" :items="['tag1', 'tag2', 'tag3']" label="Tags" multiple></v-select>
+                                        <v-select v-model="articleInfo.tags" :items="['tag1', 'tag2', 'tag3']" label="Tags" multiple></v-select>
                                     </v-col>
                                 </v-row>
                             </v-container>
@@ -75,7 +75,7 @@ export default {
     data() {
         return {
             // item
-            item: {
+            articleInfo: {
                 title: '',
                 content: '',
                 author: '',
@@ -104,18 +104,18 @@ export default {
             const now = new Date().toISOString();
 
             this.$api.addArticle({
-                title: this.item.title,
-                content: this.item.content,
-                author: this.item.author,
-                summary: this.item.summary,
+                title: this.articleInfo.title,
+                content: this.articleInfo.content,
+                author: this.articleInfo.author,
+                summary: this.articleInfo.summary,
                 views: 0,
                 likes: 0,
-                status: this.item.status,
+                status: this.articleInfo.status,
                 publicationDate: now,
                 updatedDate: now,
-                category: this.item.category,
-                coverImage: this.item.coverImage,
-                tags: this.item.tags
+                category: this.articleInfo.category,
+                coverImage: this.articleInfo.coverImage,
+                tags: this.articleInfo.tags
             })
             .then((data) => {
                 console.log(data)
@@ -130,7 +130,7 @@ export default {
             this.$api.uploadImageNoPrefix({file: file})
             .then((data) => {
                 if (data.data.status === 200 && data.data.data) {
-                    this.item.coverImage = data.data.data;
+                    this.articleInfo.coverImage = data.data.data;
                     this.uploadArticleImage_snackbar = true;
                     this.uploadArticleImage_msg = data.data.msg;
                 } else {
@@ -143,10 +143,10 @@ export default {
         ...mapState(['categories', 'img_prefix']),
         statusAsBoolean: {
             get() {
-                return this.item.status === 'PUBLISHED';
+                return this.articleInfo.status === 'PUBLISHED';
             },
             set(isPublished) {
-                this.item.status = isPublished ? 'PUBLISHED' : 'DRAFT';
+                this.articleInfo.status = isPublished ? 'PUBLISHED' : 'DRAFT';
             }
         },
     }

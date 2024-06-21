@@ -9,7 +9,6 @@
         </v-row>
       </v-sheet>
     </v-carousel-item>
-    <!--<v-card-title class="bottom-title">{{ title }}</v-card-title>-->
   </v-carousel>
 </template>
 
@@ -21,7 +20,7 @@ export default {
   data() {
     return {}
   },
-  props: ['slides', 'title'],
+  props: ['slides'],
   computed: {
     ...mapState(['img_prefix']),
   }

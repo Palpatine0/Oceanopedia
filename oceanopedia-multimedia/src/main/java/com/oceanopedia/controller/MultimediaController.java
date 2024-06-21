@@ -21,6 +21,11 @@ public class MultimediaController {
         return multimediaService.getBanners();
     }
 
+    @PostMapping("/uploadBanners")
+    public BaseResult getBanners(MultipartFile banner1, MultipartFile banner2, MultipartFile banner3) {
+        return multimediaService.uploadBanners(banner1, banner2, banner3);
+    }
+
 
     @PostMapping("/uploadImage")
     public BaseResult uploadImage(MultipartFile file) throws IOException {

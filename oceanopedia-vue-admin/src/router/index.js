@@ -7,6 +7,7 @@ import Register from "@/views/Register/Register.vue";
 import Login from '../views/Login/Login.vue'
 import store from '../store'
 import Dashboard from "@/views/Dashboard/Dashboard.vue";
+import Banner from "@/views/Banner/Banner.vue";
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,7 @@ const routes = [
         name: 'register',
         component: Register
     },
+
     {
         path: '/',
         name: 'Dashboard',
@@ -40,6 +42,11 @@ const routes = [
         path: '/article',
         name: 'Article',
         component: Article
+    },
+    {
+        path: '/banner',
+        name: 'Banner',
+        component: Banner
     },
 
 ]

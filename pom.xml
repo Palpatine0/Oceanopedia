@@ -27,7 +27,7 @@
 
 
     <properties>
-        <spring-boot-version>2.6.3</spring-boot-version>
+        <spring-boot-version>2.2.6</spring-boot-version>
         <cloud-version>2021.0.0</cloud-version>
         <lcn-version>5.0.0</lcn-version>
         <fastdfs-version>1.27</fastdfs-version>
