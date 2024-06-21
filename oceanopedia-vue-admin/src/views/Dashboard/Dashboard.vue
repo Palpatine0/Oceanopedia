@@ -1,5 +1,5 @@
 <template>
-    <v-app :style="{ padding: isUserLoggedIn ? '20px' : '0px', minHeight: '100vh' }">
+    <v-app style="padding: 20px">
         <v-subheader as="h1" class="subheading grey--text">Dashboard</v-subheader>
 
         <v-container>
@@ -77,7 +77,7 @@
                                                 fas fa-eye
                                             </v-icon>
                                             <span class="caption">
-                                                {{articleB.views}}
+                                                {{ articleB.views }}
                                             </span>
                                         </v-row>
                                     </v-list-item>
@@ -121,7 +121,7 @@
                                                 fas fas fa-eye
                                             </v-icon>
                                             <span class="caption">
-                                                {{articleA.views}}
+                                                {{ articleA.views }}
                                             </span>
                                         </v-row>
                                     </v-list-item>
@@ -165,7 +165,7 @@
                                                 fas fas fa-eye
                                             </v-icon>
                                             <span class="caption">
-                                                {{articleC.views}}
+                                                {{ articleC.views }}
                                             </span>
                                         </v-row>
                                     </v-list-item>
@@ -259,9 +259,9 @@ export default {
             articleA: {},
             articleASummary: "The Deepwater Horizon explosion caused a massive oil spill off the coast of Louisiana, leaking over 5,000 barrels of oil per day and severely impacting coastal ecosystems, wildlife, and fisheries. The disaster has prompted emergency declarations in multiple Gulf states and ongoing efforts to contain and mitigate the damage.",
             articleB: {},
-            articleBSummary:"Cephalopods, such as octopuses and squids, are intelligent mollusks with three hearts and blue blood, capable of changing color for camouflage and communication​ (Smithsonian Ocean)​​ (Smithsonian Natural History)​. Learn more on the Smithsonian Ocean Portal.",
+            articleBSummary: "Cephalopods, such as octopuses and squids, are intelligent mollusks with three hearts and blue blood, capable of changing color for camouflage and communication​ (Smithsonian Ocean)​​ (Smithsonian Natural History)​. Learn more on the Smithsonian Ocean Portal.",
             articleC: {},
-            articleCSummary:"",
+            articleCSummary: "",
             recentArticleViews: [14, 200, 30, 20, 166, 18, 114, 198, 160, 173, 122, 98, 171, 84, 75],
             date2: new Date().toISOString().substr(0, 10),
             isUserLoggedIn: false, // Assume some logic to check if the user is logged in

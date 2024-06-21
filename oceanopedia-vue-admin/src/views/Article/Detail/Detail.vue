@@ -15,7 +15,7 @@
         <!--Title-->
         <v-container class="mt-5">
             <v-row style="height: 120px;justify-content: space-between">
-                <v-col cols="6" md="8" sm="6">
+                <v-col cols="6" md="7" sm="6">
                     <div v-if="articleInfo.title">
                         <p class="info-head-title">
                             {{ articleInfo.title }}
@@ -30,32 +30,32 @@
                     </div>
                 </v-col>
 
-                <v-col>
+                <v-col cols="6" md="4" sm="6">
                     <v-row>
-                        <v-col>
-                            <div class="mt-1">
+                        <v-col md="4">
+                            <div >
                                 <div v-if="articleInfo.status==true" @click="updateItemStatusById">
-                                    <v-btn color="accent" rounded x-large>
+                                    <v-btn color="accent" rounded large>
                                         <v-icon size="26">mdi-checkbox-marked-circle</v-icon>
                                         &nbsp;PUBLISHED
                                     </v-btn>
                                 </div>
                                 <div v-else-if="articleInfo.status!=true" @click="updateItemStatusById">
-                                    <v-btn color="#dbdbdb" rounded x-large>
+                                    <v-btn color="#dbdbdb" rounded large>
                                         <v-icon size="26">mdi-cancel</v-icon>
                                         &nbsp;DRAFT
                                     </v-btn>
                                 </div>
                             </div>
                         </v-col>
-                        <v-col>
-                            <div style="float: right">
-                                <v-icon size="66" color="#ababab" @click="editInfo_dialog=!editInfo_dialog">mdi-cog</v-icon>
+                        <v-col md="6">
+                            <div style="float: right;">
+                                <v-icon size="46" color="#ababab" @click="editInfo_dialog=!editInfo_dialog">mdi-cog</v-icon>
                             </div>
                         </v-col>
-                        <v-col>
+                        <v-col md="2">
                             <div style="float: right">
-                                <v-icon size="66" color="error" @click="deleteArticle_dialog=!deleteArticle_dialog">mdi-trash-can-outline</v-icon>
+                                <v-icon size="46" color="error" @click="deleteArticle_dialog=!deleteArticle_dialog">mdi-trash-can-outline</v-icon>
                             </div>
                         </v-col>
                     </v-row>
@@ -119,7 +119,7 @@
                     </v-row>
                 </v-col>
                 <v-col cols="6" md="2">
-                    <v-progress-circular :rotate="90" :size="230" :width="35" :value="articleInfo.views !== 0 ? parseFloat((articleInfo.likes / articleInfo.views) * 100).toFixed(2) : 0" color="#5aaeaa" style="margin-left: 30px">
+                    <v-progress-circular :rotate="90" :size="230" :width="50" :value="articleInfo.views !== 0 ? parseFloat((articleInfo.likes / articleInfo.views) * 100).toFixed(2) : 0" color="#5aaeaa" style="margin-left: 0px">
                         <span style="font-size: 20px;font-weight: bold">
                             {{ articleInfo.views !== 0 ? parseFloat((articleInfo.likes / articleInfo.views) * 100).toFixed(2) : 0 }}%
                         </span>
@@ -314,6 +314,6 @@ export default {
 }
 
 * {
-//outline: 1px solid red;
+    //outline: 1px solid red;
 }
 </style>

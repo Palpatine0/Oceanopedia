@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <v-app style="padding: 20px">
         <v-subheader as="h1" class="subheading grey--text">Banner</v-subheader>
 
         <!-- Swiper Section -->
