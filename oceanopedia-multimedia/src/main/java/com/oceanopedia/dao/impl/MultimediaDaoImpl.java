@@ -22,9 +22,29 @@ public class MultimediaDaoImpl implements MultimediaDao {
     }
 
     @Override
+    public void updateBanners(String banner1, String banner2, String banner3) {
+        List<Banner> existingBanners = mongoTemplate.findAll(Banner.class);
+        for (Banner banner : existingBanners) {
+            mongoTemplate.remove(banner);
+        }
+        Banner newBanner1 = new Banner();
+        newBanner1.setUrl(banner1);
+        mongoTemplate.save(newBanner1);
+        Banner newBanner2 = new Banner();
+        newBanner2.setUrl(banner2);
+        mongoTemplate.save(newBanner2);
+        Banner newBanner3 = new Banner();
+        newBanner3.setUrl(banner3);
+        mongoTemplate.save(newBanner3);
+    }
+
+    @Override
     public void saveImage(Image image) {
         mongoTemplate.save(image);
     }
 
-
+    @Override
+    public void saveBanner(Banner banner) {
+        mongoTemplate.save(banner);
+    }
 }

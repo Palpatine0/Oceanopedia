@@ -20,6 +20,10 @@ spring:
           uri: lb://oceanopedia-multimedia
           predicates:
             - Path=/multimedia/getBanners
+        - id: multimedia-updateBanners
+          uri: lb://oceanopedia-multimedia
+          predicates:
+            - Path=/multimedia/updateBanners
         - id: multimedia-uploadImageNoPrefix
           uri: lb://oceanopedia-multimedia
           predicates:

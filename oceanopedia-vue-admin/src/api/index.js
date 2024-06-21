@@ -7,8 +7,16 @@ import axios from 'axios'
 const api = {
 
     // Multimedia
-    getBanner() {
-        return axios.get(base.baseUrl + base.getBanner)
+    getBanners() {
+        return axios.get(base.baseUrl + base.getBanners)
+    },
+    updateBanners(params) {
+        console.log(params)
+        console.log(params)
+        console.log(params)
+        console.log(params)
+        console.log(params)
+        return axios.post(base.baseUrl + base.updateBanners, +"?" + qs.stringify(params));
     },
     uploadImageNoPrefix(file) {
         return axios.post(base.baseUrl + base.uploadImageNoPrefix, file, {

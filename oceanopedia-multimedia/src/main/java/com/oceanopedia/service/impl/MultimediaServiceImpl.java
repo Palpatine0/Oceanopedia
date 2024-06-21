@@ -33,6 +33,27 @@ public class MultimediaServiceImpl implements MultimediaService {
     private String nginxPrefix;
 
     @Override
+    public BaseResult uploadBanner(byte[] fileBytes, String fileName) throws IOException {
+        try {
+            InputStream inputStream = new ByteArrayInputStream(fileBytes);
+            String fileSuffix = fileName.substring(fileName.lastIndexOf(".") + 1);
+            StorePath storePath = fastFileStorageClient.uploadFile(inputStream, inputStream.available(), fileSuffix, null);
+            String fullPath = storePath.getFullPath();
+            Banner banner = new Banner();
+            banner.setUrl(fullPath);
+            multimediaDao.saveBanner(banner);
+            BaseResult ok = BaseResult.ok();
+            ok.setMsg("Banner upload success.");
+            ok.setData(fullPath);
+            return ok;
+        } catch (IOException ioException) {
+            BaseResult error = BaseResult.error();
+            error.setMsg("Banner upload failed.");
+            return error;
+        }
+    }
+
+    @Override
     public BaseResult getBanners() {
         BaseResult result = new BaseResult();
         try {
@@ -61,8 +82,11 @@ public class MultimediaServiceImpl implements MultimediaService {
     }
 
     @Override
-    public BaseResult uploadBanners(MultipartFile banner1, MultipartFile banner2, MultipartFile banner3) {
-        return null;
+    public BaseResult updateBanners(String banner1, String banner2, String banner3) {
+        multimediaDao.updateBanners(banner1, banner2, banner3);
+        BaseResult ok = BaseResult.ok();
+        ok.setMsg("Banner update success.");
+        return ok;
     }
 
     @Override
@@ -84,12 +108,12 @@ public class MultimediaServiceImpl implements MultimediaService {
                 return BaseResult.ok(imageUrl);
             } catch (IOException ioException) {
                 BaseResult error = BaseResult.error();
-                error.setMsg("File upload failed");
+                error.setMsg("Image upload failed");
                 return error;
             }
         } else {
             BaseResult error = BaseResult.error();
-            error.setMsg("File upload failed");
+            error.setMsg("Image upload failed");
             return error;
         }
     }
@@ -112,17 +136,17 @@ public class MultimediaServiceImpl implements MultimediaService {
                 multimediaDao.saveImage(image);
 
                 BaseResult ok = BaseResult.ok(imageUrl);
-                ok.setMsg("File uploaded success");
+                ok.setMsg("Image uploaded success");
                 ok.setData(imageUrl);
                 return ok;
             } catch (IOException ioException) {
                 BaseResult error = BaseResult.error();
-                error.setMsg("File upload failed");
+                error.setMsg("Image upload failed");
                 return error;
             }
         } else {
             BaseResult error = BaseResult.error();
-            error.setMsg("File upload failed");
+            error.setMsg("Image upload failed");
             return error;
         }
     }

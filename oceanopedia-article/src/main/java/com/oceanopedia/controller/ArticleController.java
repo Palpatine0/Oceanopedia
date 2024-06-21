@@ -97,44 +97,6 @@ public class ArticleController {
             updDate = formatter.parse(updatedDate);
         }
 
-        // Check for null values and print which parameter is null
-        if (id == null) {
-            System.out.println("Parameter 'id' is null");
-            throw new IllegalArgumentException("Parameter 'id' cannot be null");
-        }
-        if (title == null) {
-            System.out.println("Parameter 'title' is null");
-            throw new IllegalArgumentException("Parameter 'title' cannot be null");
-        }
-        if (content == null) {
-            System.out.println("Parameter 'content' is null");
-            throw new IllegalArgumentException("Parameter 'content' cannot be null");
-        }
-        if (author == null) {
-            System.out.println("Parameter 'author' is null");
-            throw new IllegalArgumentException("Parameter 'author' cannot be null");
-        }
-        if (summary == null) {
-            System.out.println("Parameter 'summary' is null");
-            throw new IllegalArgumentException("Parameter 'summary' cannot be null");
-        }
-        if (views == null) {
-            System.out.println("Parameter 'views' is null");
-            throw new IllegalArgumentException("Parameter 'views' cannot be null");
-        }
-        if (likes == null) {
-            System.out.println("Parameter 'likes' is null");
-            throw new IllegalArgumentException("Parameter 'likes' cannot be null");
-        }
-        if (category == null) {
-            System.out.println("Parameter 'category' is null");
-            throw new IllegalArgumentException("Parameter 'category' cannot be null");
-        }
-        if (coverImage == null) {
-            System.out.println("Parameter 'coverImage' is null");
-            throw new IllegalArgumentException("Parameter 'coverImage' cannot be null");
-        }
-
         Article article = new Article();
         article.setId(id);
         article.setTitle(title);

@@ -74,7 +74,7 @@
 
                                         <v-row align="center" justify="end">
                                             <v-icon class="mr-1" small>
-                                                fas fa-thumbs-up
+                                                fas fa-eye
                                             </v-icon>
                                             <span class="caption">
                                                 {{articleB.views}}
@@ -118,7 +118,7 @@
                                         </div>
                                         <v-row align="center" justify="end">
                                             <v-icon class="mr-1" small>
-                                                fas fa-thumbs-up
+                                                fas fas fa-eye
                                             </v-icon>
                                             <span class="caption">
                                                 {{articleA.views}}
@@ -162,7 +162,7 @@
                                         </div>
                                         <v-row align="center" justify="end">
                                             <v-icon class="mr-1" small>
-                                                fas fa-thumbs-up
+                                                fas fas fa-eye
                                             </v-icon>
                                             <span class="caption">
                                                 {{articleC.views}}

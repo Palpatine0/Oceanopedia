@@ -3,7 +3,8 @@ const base = {
     baseUrl: "/api",
 
     // multimedia
-    getBanner: '/multimedia/getBanner',
+    getBanners: '/multimedia/getBanners',
+    updateBanners: '/multimedia/updateBanners',
     uploadImageNoPrefix: '/multimedia/uploadImageNoPrefix',
 
     // trendy

@@ -3,13 +3,17 @@
         <v-subheader as="h1" class="subheading grey--text">Article</v-subheader>
         <v-container v-if="isUserLoggedIn">
             <v-row style="justify-content: space-between">
-                <v-col cols="2">
-                    <v-select v-model="selectedCategory" :items="categories" label="Category"></v-select>
+                <v-col cols="6" md="10" sm="6" style="display: flex;">
+                    <v-col cols="6" md="3" sm="6">
+                        <v-select v-model="selectedCategory" :items="categories" label="Category"></v-select>
+                    </v-col>
+                    <v-col cols="6" md="9" sm="6">
+                        <AddArticle_Model v-if="isUserLoggedIn" class="mt-5"></AddArticle_Model>
+                    </v-col>
                 </v-col>
 
-                <AddArticle_Model v-if="isUserLoggedIn" class="mt-5"></AddArticle_Model>
 
-                <div class="mt-5">
+                <div md="2" style="margin-top: 30px">
                     <v-pagination v-model="page" :length="pagination" class="float-right" color="primary" @input="getArticlesByCity"></v-pagination>
                 </div>
             </v-row>
@@ -155,6 +159,6 @@ export default {
 
 <style>
 * {
-//outline: 1px solid red;
+    //outline: 1px solid red;
 }
 </style>
