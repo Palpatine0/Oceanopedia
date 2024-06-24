@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar app flat v-if="isUserLoggedIn">
+    <v-app-bar app flat v-if="isUserLoggedIn" style="z-index: 100">
         <v-app-bar-nav-icon  class="grey--text" @click="toggleDrawer"/>
 
         <v-toolbar-title class="text-uppercase grey--text">

@@ -7,22 +7,11 @@
                 <!-- Left -->
                 <v-col cols="12" sm="8">
                     <v-app-bar color="rgba(0,0,0,0)" flat>
-                        <v-text-field
-                                label="Search ..."
-                                class="pt-5"
-                                filled
-                                prepend-inner-icon="mdi-magnify"
-                                dense
-                                solo
-                                flat
-                                background-color="grey lighten-4"
-                                rounded
-                                v-model="searchQuery"
-                                @input="handleSearch">
+                        <v-text-field label="Search ..." class="pt-5" filled prepend-inner-icon="mdi-magnify" dense solo flat background-color="grey lighten-4" rounded v-model="searchQuery" @input="handleSearch">
                         </v-text-field>
                     </v-app-bar>
 
-                    <v-list v-if="searchResults.length > 0" class="search-results-list">
+                    <v-list v-if="searchResults.length > 0" class="search-results-list" elevation="10">
                         <v-list-item v-for="result in searchResults" :key="result.id">
                             <v-list-item-content >
                                 <a :href="result.link" style="display: flex; text-decoration: none">
