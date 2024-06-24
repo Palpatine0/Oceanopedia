@@ -6,7 +6,7 @@
                     <img alt="User Avatar" :src="this.img_prefix +user.avatar">
                 </v-avatar>
                 <p class="white--text subheading mt-1">
-                    {{ user.username }}
+                    <b>{{ user.username }}</b>
                 </p>
             </v-col>
         </v-row>

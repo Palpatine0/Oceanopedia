@@ -1,5 +1,5 @@
 <template>
-    <v-app :style="{ padding: isUserLoggedIn ? '20px' : '0px', minHeight: '100vh' }">
+    <v-app style="padding: 20px">
         <v-subheader as="h1" class="subheading grey--text">Article</v-subheader>
         <v-container v-if="isUserLoggedIn">
             <v-row style="justify-content: space-between">
@@ -116,8 +116,6 @@ export default {
                 this.pagination = Math.ceil(this.totalCount_item / 3);
                 this.articleList = this.articleList.concat(data.data.data)
                 this.initializeShowStates();
-                console.log("this.articleList")
-                console.log(this.articleList)
             })
         },
         toggleShow(index) {
@@ -159,6 +157,6 @@ export default {
 
 <style>
 * {
-    //outline: 1px solid red;
+//outline: 1px solid red;
 }
 </style>

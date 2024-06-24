@@ -99,6 +99,13 @@ spring:
           uri: lb://oceanopedia-article
           predicates:
             - Path=/article/getRecentArticleViews
+        # search
+        - id: search-searchByKeyWord
+          uri: lb://oceanopedia-search
+          predicates:
+            - Path=/search/searchByKeyWord
+            - Query=content
+
     config:
       uri: http://localhost:8764
       label: master

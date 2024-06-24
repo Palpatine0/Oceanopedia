@@ -14,12 +14,12 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/login',
-        name: 'login',
+        name: 'Login',
         component: Login
     },
     {
         path: '/register',
-        name: 'register',
+        name: 'Register',
         component: Register
     },
 
@@ -58,8 +58,8 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    if (!store.state.user.id && to.name !== 'login' && to.name !== 'register') {
-        next({ name: 'login' });
+    if (!store.state.user.id && to.name !== 'Login' && to.name !== 'Register') {
+        next({ name: 'Login' });
     } else {
         next();
     }

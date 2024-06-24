@@ -3,15 +3,38 @@
         <v-subheader as="h1" class="subheading grey--text">Dashboard</v-subheader>
 
         <v-container>
-            <v-app-bar color="rgba(0,0,0,0)" flat>
-                <v-text-field label="Search ..." class="pt-5" filled prepend-inner-icon="mdi-magnify" dense solo flat
-                              background-color="grey lighten-4" rounded></v-text-field>
-                <v-spacer></v-spacer>
-            </v-app-bar>
-
             <v-row>
                 <!-- Left -->
                 <v-col cols="12" sm="8">
+                    <v-app-bar color="rgba(0,0,0,0)" flat>
+                        <v-text-field
+                                label="Search ..."
+                                class="pt-5"
+                                filled
+                                prepend-inner-icon="mdi-magnify"
+                                dense
+                                solo
+                                flat
+                                background-color="grey lighten-4"
+                                rounded
+                                v-model="searchQuery"
+                                @input="handleSearch">
+                        </v-text-field>
+                    </v-app-bar>
+
+                    <v-list v-if="searchResults.length > 0" class="search-results-list">
+                        <v-list-item v-for="result in searchResults" :key="result.id">
+                            <v-list-item-content >
+                                <a :href="result.link" style="display: flex; text-decoration: none">
+                                    <v-icon style="margin-left: 8px">mdi-magnify</v-icon>
+                                    <v-list-item-title class="search-results-title" style="margin-left: 4px">{{ result.title }}</v-list-item-title>
+                                </a>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list>
+
+
+
                     <v-card class="mb-5 mx-4 rounded-xl pa-4" color="grey lighten-3" flat>
                         <v-row>
                             <v-col cols="12" sm="8">
@@ -196,7 +219,9 @@
                     </v-card>
                 </v-col>
 
-                <!-- Right -->
+                <!--
+
+ Right -->
                 <v-col cols="12" sm="4">
                     <v-card class="rounded-xl pa-4" color="secondary" flat>
 
@@ -265,6 +290,8 @@ export default {
             recentArticleViews: [14, 200, 30, 20, 166, 18, 114, 198, 160, 173, 122, 98, 171, 84, 75],
             date2: new Date().toISOString().substr(0, 10),
             isUserLoggedIn: false, // Assume some logic to check if the user is logged in
+            searchQuery: '', // Add this data property
+            searchResults: [], // Add this data property to store search results
         };
     },
     methods: {
@@ -294,13 +321,22 @@ export default {
             .then((res) => {
                 this.recentArticleViews = res.data.data;
             })
-
         },
         condenseText(text) {
             const words = text.split(' ');
             return words.slice(0, 15).join(' ') + '...';
+        },
+        handleSearch() {
+            if (this.searchQuery.length > 2) {
+                this.$api.searchByKeyWord({ content: this.searchQuery })
+                .then(data => {
+                    this.searchResults = data.data.data; // Store the search results
+                })
+                .catch(error => {
+                    console.error("There was an error fetching the search results:", error);
+                });
+            }
         }
-
     },
     mounted() {
         this.fetchArticles();
@@ -315,4 +351,23 @@ export default {
 * {
     /* outline: 1px solid red; */
 }
+.search-results-list {
+    position: absolute;
+    z-index: 10;
+    width: 725px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-left: 16px;
+    margin-top: -16px;
+    border-top-left-radius: 25px !important;
+    border-top-right-radius: 25px !important;
+    border-bottom-left-radius: 25px !important;
+    border-bottom-right-radius: 25px !important;
+    overflow: hidden; /* Ensures the rounded corners stay constant */
+    box-shadow: black;
+}
+.search-results-title {
+    color: dimgrey;
+    text-decoration: none; /* Corrected property name */
+}
+
 </style>

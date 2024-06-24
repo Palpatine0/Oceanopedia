@@ -11,11 +11,6 @@ const api = {
         return axios.get(base.baseUrl + base.getBanners)
     },
     updateBanners(params) {
-        console.log(params)
-        console.log(params)
-        console.log(params)
-        console.log(params)
-        console.log(params)
         return axios.post(base.baseUrl + base.updateBanners, +"?" + qs.stringify(params));
     },
     uploadImageNoPrefix(file) {
@@ -29,12 +24,6 @@ const api = {
     // Search
     searchByKeyWord(params) {
         return axios.get(base.baseUrl + base.searchByKeyWord + "?" + qs.stringify(params));
-    },
-    searchByCity(params) {
-        return axios.get(base.baseUrl + base.searchByCity + "?" + qs.stringify(params));
-    },
-    adminSearchByCity(params) {
-        return axios.get(base.baseUrl + base.adminSearchByCity + "?" + qs.stringify(params));
     },
 
     // Article
@@ -65,16 +54,6 @@ const api = {
     getRecentArticleViews(params) {
         return axios.get(base.baseUrl + base.getRecentArticleViews + "?" + qs.stringify(params));
     },
-
-
-    // Comment
-    addComment(params) {
-        return axios.post(base.baseUrl + base.feedback, qs.stringify(params));
-    },
-    getComment(params) {
-        return axios.get(base.baseUrl + base.comment + "?" + qs.stringify(params));
-    },
-
 
     // User
     login(params) {
