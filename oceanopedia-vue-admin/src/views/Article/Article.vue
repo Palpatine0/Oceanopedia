@@ -1,20 +1,24 @@
 <template>
     <v-app style="padding: 20px">
         <v-subheader as="h1" class="subheading grey--text">Article</v-subheader>
-        <v-app-bar color="rgba(0,0,0,0)" flat>
-            <v-text-field label="Search ..." class="pt-5" filled prepend-inner-icon="mdi-magnify" dense solo flat background-color="grey lighten-4" rounded v-model="searchQuery" @input="handleSearch">
-            </v-text-field>
-        </v-app-bar>
-        <v-list v-if="searchResults.length > 0" class="article-search-results-list" elevation="10">
-            <v-list-item v-for="result in searchResults" :key="result.id">
-                <v-list-item-content >
-                    <a :href="result.link" style="display: flex; text-decoration: none">
-                        <v-icon style="margin-left: 8px">mdi-magnify</v-icon>
-                        <v-list-item-title class="article-search-results-title" style="margin-left: 4px">{{ result.title }}</v-list-item-title>
-                    </a>
-                </v-list-item-content>
-            </v-list-item>
-        </v-list>
+
+        <div v-if="articleList[0]!=null">
+            <v-app-bar color="rgba(0,0,0,0)" flat>
+                <v-text-field label="Search ..." class="pt-5" filled prepend-inner-icon="mdi-magnify" dense solo flat background-color="grey lighten-4" rounded v-model="searchQuery" @input="handleSearch">
+                </v-text-field>
+            </v-app-bar>
+            <v-list v-if="searchResults.length > 0" class="article-search-results-list" elevation="10">
+                <v-list-item v-for="result in searchResults" :key="result.id">
+                    <v-list-item-content>
+                        <a :href="result.link" style="display: flex; text-decoration: none">
+                            <v-icon style="margin-left: 8px">mdi-magnify</v-icon>
+                            <v-list-item-title class="article-search-results-title" style="margin-left: 4px">{{ result.title }}</v-list-item-title>
+                        </a>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list>
+        </div>
+
         <v-container v-if="isUserLoggedIn">
             <v-row style="justify-content: space-between">
                 <v-col cols="6" md="10" sm="6" style="display: flex;">
@@ -25,7 +29,6 @@
                         <AddArticle_Model v-if="isUserLoggedIn" class="mt-5"></AddArticle_Model>
                     </v-col>
                 </v-col>
-
 
                 <div md="2" style="margin-top: 30px">
                     <v-pagination v-model="page" :length="pagination" class="float-right" color="primary" @input="getArticlesByCity"></v-pagination>
@@ -151,7 +154,7 @@ export default {
         },
         handleSearch() {
             if (this.searchQuery.length > 2) {
-                this.$api.searchByKeyWord({ content: this.searchQuery })
+                this.$api.searchByKeyWord({content: this.searchQuery})
                 .then(data => {
                     this.searchResults = data.data.data; // Store the search results
                 })
@@ -186,6 +189,7 @@ export default {
 * {
 //outline: 1px solid red;
 }
+
 .article-search-results-list {
     top: 110px;
     width: 1140px;
@@ -199,6 +203,7 @@ export default {
     border-bottom-right-radius: 25px !important;
     overflow: hidden; /* Ensures the rounded corners stay constant */
 }
+
 .article-search-results-title {
     color: dimgrey;
     text-decoration: none; /* Corrected property name */

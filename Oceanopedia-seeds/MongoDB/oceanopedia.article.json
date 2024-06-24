@@ -24,11 +24,11 @@
   "_id": {
     "$oid": "666fb38e5709f31402bb22c3"
   },
-  "title": "Diversity and Evolution",
+  "title": "Diversity and Evolution of Alpha",
   "content": "Anatomy\nCephalopod literally means “head foot” in Greek, a reference to the way the cephalopod’s head connects to its many arms. The basic cephalopod body plan includes two eyes, a mantle, a funnel (also called a siphon), and at least eight arms. Some have hard, internal structures, like the cuttlebone in the cuttlefish and the pen in the squid, that evolved from the hard, outer shells of their ancestors, but in many octopuses the hard structure is completely lost. Only the chambered nautiluses have an external shell.",
   "author": "Smithsonian Institution",
   "publicationDate": {
-    "$date": "2024-05-02T16:00:00.000Z"
+    "$date": "2024-05-01T16:00:00.000Z"
   },
   "summary": "Cephalopods, such as octopuses and squids, are intelligent mollusks with three hearts and blue blood, capable of changing color for camouflage and communication​ (Smithsonian Ocean)​​ (Smithsonian Natural History)​. Learn more on the Smithsonian Ocean Portal.",
   "views": 3220,
@@ -36,7 +36,7 @@
   "likes": 215,
   "status": true,
   "updatedDate": {
-    "$date": "2024-06-17T16:00:00.000Z"
+    "$date": "2024-06-16T16:00:00.000Z"
   },
   "tags": [
     "TEST"
@@ -92,7 +92,7 @@
   "_id": {
     "$oid": "66751ba3033cf5165419b6b5"
   },
-  "title": "ELLYFISH AND COMB JELLIES",
+  "title": "Jellyfish and Come Jell Jellies",
   "content": "While jellyfish and comb jellies have several anatomical differences, the basics are the same. Both have two major cell layers: the external epidermis and the internal gastrodermis. (Ctenophores also have musculature in their in-between layer, the mesoderm, but it likely evolved separately from the mesoderm found in bilaterians like people.)\n\nThe gastrodermis lines the all-purpose gut and an opening where food enters and reproductive cells are released and taken in. Jellies have no need for a stomach, intestine, or lungs: nutrients and oxygen slip in and out of their cell walls through the gastrodermis or even their bodies' outer cells. The outer cells that make up the epidermis contain a loose network of nerves called the \"nerve net.\" This is the most basic nervous system known in a multicellular animal. (See Brains of Jelly? for more.)\n\nBetween these layers is a gelatinous material called mesoglea, which makes up most of their bodies. (Although some small species have very thin mesoglea.) Jellyfish and comb jellies are 95 percent water and so, rightly, mesoglea is mostly water! It also contains some structural proteins, muscle cells, and nerve cells, forming a kind of internal skeleton.",
   "author": "Allen Collins",
   "publicationDate": {

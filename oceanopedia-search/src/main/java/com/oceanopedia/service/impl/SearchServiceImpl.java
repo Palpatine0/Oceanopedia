@@ -33,6 +33,10 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public void esinit() {
+        // Clear the existing index
+        searchDao.clearIndex();
+
+        // Load new data from MongoDB and insert into Elasticsearch
         List<Article> articleList = mongoTemplate.findAll(Article.class);
         ArrayList<Article4ES> arrayList = new ArrayList<>();
         for (Article article : articleList) {

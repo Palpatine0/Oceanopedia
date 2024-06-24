@@ -7,7 +7,9 @@ import java.util.List;
 public interface SearchDao {
     List<Article4ES> searchByKeyWord(String content);
 
-
     void batchInsertToES(List<Article4ES> items);
-}
 
+    void createIndex();
+
+    void clearIndex();
+}

@@ -1,13 +1,11 @@
 package com.oceanopedia.dao.impl;
 
-
 import com.oceanopedia.dao.SearchDao;
 import com.oceanopedia.entity.Article4ES;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.IndexOperations;
 import org.springframework.data.elasticsearch.core.SearchHit;
@@ -24,17 +22,14 @@ import java.util.List;
 @Repository
 public class SearchDaoImpl implements SearchDao {
 
-
     @Autowired
     private ElasticsearchRestTemplate elasticsearchRestTemplate;
 
     @Value("${oceanopedia.search.init.enabled}")
     private boolean initEnabled = false;
 
-
     @Override
     public List<Article4ES> searchByKeyWord(String content) {
-
         BoolQueryBuilder shouldBuilder = QueryBuilders.boolQuery()
                 .should(QueryBuilders.matchQuery("title", content));
         BoolQueryBuilder queryBuilder = QueryBuilders.boolQuery().must(shouldBuilder);
@@ -54,7 +49,6 @@ public class SearchDaoImpl implements SearchDao {
         return res;
     }
 
-
     @Override
     public void batchInsertToES(List<Article4ES> articles) {
         // Creating an Elasticsearch index if it doesn't already exist.
@@ -72,9 +66,22 @@ public class SearchDaoImpl implements SearchDao {
         elasticsearchRestTemplate.bulkIndex(indexQueries, Article4ES.class);
     }
 
-    private void createIndex() {
+    @Override
+    public void createIndex() {
         IndexOperations indexOperations = elasticsearchRestTemplate.indexOps(Article4ES.class);
+        if (!indexOperations.exists()) {
+            indexOperations.create();
+            indexOperations.putMapping(indexOperations.createMapping(Article4ES.class));
+        }
     }
 
-
+    @Override
+    public void clearIndex() {
+        IndexOperations indexOperations = elasticsearchRestTemplate.indexOps(Article4ES.class);
+        if (indexOperations.exists()) {
+            indexOperations.delete();
+            indexOperations.create();
+            indexOperations.putMapping(indexOperations.createMapping(Article4ES.class));
+        }
+    }
 }
