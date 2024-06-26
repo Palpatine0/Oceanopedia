@@ -13,20 +13,21 @@
 
                     <v-list v-if="searchResults.length > 0" class="search-results-list" elevation="10">
                         <v-list-item v-for="result in searchResults" :key="result.id">
-                            <v-list-item-content >
+                            <v-list-item-content>
                                 <a :href="result.link" style="display: flex; text-decoration: none">
                                     <v-icon style="margin-left: 8px">mdi-magnify</v-icon>
-                                    <v-list-item-title class="search-results-title" style="margin-left: 4px">{{ result.title }}</v-list-item-title>
+                                    <v-list-item-title class="search-results-title" style="margin-left: 4px">
+                                        {{ result.title }}
+                                    </v-list-item-title>
                                 </a>
                             </v-list-item-content>
                         </v-list-item>
                     </v-list>
 
 
-
-                    <v-card class="mb-5 mx-4 rounded-xl pa-4" color="grey lighten-3" flat>
+                    <v-card class="mb-1 mx-4 rounded-xl pa-4" color="grey lighten-3" flat>
                         <v-row>
-                            <v-col cols="12" sm="8">
+                            <v-col cols="14" sm="10">
                                 <v-list-item three-line>
                                     <v-list-item-content>
                                         <v-list-item-title class="text-h4 mb-1">
@@ -34,10 +35,7 @@
                                         </v-list-item-title>
                                         <v-list-item-subtitle>
                                             Welcome back {{ user.username }}. We are glad you're here.<br>
-                                            Inspire the best work in people, enabling them to achieve
-                                        </v-list-item-subtitle>
-                                        <v-list-item-subtitle>
-                                            their goals.
+                                            Inspire the best work in people, enabling them to achieve their goals.
                                         </v-list-item-subtitle>
                                     </v-list-item-content>
                                 </v-list-item>
@@ -51,12 +49,12 @@
                     </v-toolbar>
 
                     <v-row class="mt-n5">
+
                         <v-col cols="12" sm="4">
                             <v-card class="rounded-xl ml-4" color="grey lighten-3" flat :href="articleB.link">
                                 <v-card-title>
                                     <span class="text-h6 font-weight-light">
-                                        State of Emergency in the Gulf
-                                        <!--{{ articleB.title }}-->
+                                        {{ articleB.title }}
                                     </span>
                                 </v-card-title>
 
@@ -186,7 +184,7 @@
                         </v-col>
                     </v-row>
 
-                    <v-card class="mx-4 rounded-xl pa-6 mt-5" color="grey lighten-3" flat>
+                    <v-card class="mx-4 rounded-xl pa-6 mt-4" color="grey lighten-3" flat>
                         <v-toolbar flat color="rgba(0,0,0,0)" dense class="mt-n5">
                             <v-toolbar-title>
                                 Recent Article Views
@@ -208,48 +206,47 @@
                     </v-card>
                 </v-col>
 
-                <!--
-
- Right -->
+                <!--Right -->
                 <v-col cols="12" sm="4">
                     <v-card class="rounded-xl pa-4" color="secondary" flat>
 
-                        <v-app-bar shaped elevation="0">
-                            <v-btn fab small elevation="0">
+                        <v-app-bar shaped class="mt-1" elevation="0">
+                            <v-btn fab elevation="0">
                                 <v-icon color="black">fas fa-book</v-icon>
                             </v-btn>
-                            <strong class="subtitle black--text ml-2">
-                                Articles Posted <span class="caption"><br>80</span>
+                            <strong class="subtitle  ml-2">
+                                Articles Posted
+                                <span class="caption"><br>80</span>
                             </strong>
                             <v-spacer></v-spacer>
-                            <v-icon color="grey" class="ml-2">fas fa-chevron-circle-right</v-icon>
+                            <!--<v-icon color="grey" class="ml-2">fas fa-chevron-circle-right</v-icon>-->
                         </v-app-bar>
 
-                        <v-app-bar shaped class="mt-3" elevation="0">
-                            <v-btn tile fab small elevation="0">
+                        <v-app-bar shaped class="mt-5" elevation="0">
+                            <v-btn fab elevation="0">
                                 <v-icon color="black">fas fa-thumbs-up</v-icon>
                             </v-btn>
-                            <strong class="subtitle black--text ml-2">
+                            <strong class="subtitle  ml-2">
                                 Total Likes<span class="caption"><br>1.5k</span>
                             </strong>
                             <v-spacer></v-spacer>
-                            <v-icon color="grey" class="ml-2">fas fa-chevron-circle-right</v-icon>
+                            <!--<v-icon color="grey" class="ml-2">fas fa-chevron-circle-right</v-icon>-->
                         </v-app-bar>
 
-                        <v-app-bar shaped class="mt-3" elevation="0">
-                            <v-btn tile fab small elevation="0">
+                        <v-app-bar shaped class="mt-5" elevation="0">
+                            <v-btn fab elevation="0">
                                 <v-icon color="black">fas fa-user-friends</v-icon>
                             </v-btn>
-                            <strong class="subtitle black--text ml-2">
+                            <strong class="subtitle  ml-2">
                                 Total Users <span class="caption"><br>972</span>
                             </strong>
                             <v-spacer></v-spacer>
-                            <v-icon color="grey" class="ml-2">fas fa-chevron-circle-right</v-icon>
+                            <!--<v-icon color="grey" class="ml-2">fas fa-chevron-circle-right</v-icon>-->
                         </v-app-bar>
 
                         <div class="text-center mt-5 mb-5">
-                            <v-date-picker v-model="date2" :event-color="date => date[9] % 2 ? 'red' : 'yellow'"
-                                           :events="functionEvents"></v-date-picker>
+                            <v-date-picker v-model="date2" :event-color="date => date[9] % 2 ? 'red' : 'yellow'" :events="functionEvents">
+                            </v-date-picker>
                         </div>
                     </v-card>
                 </v-col>
@@ -271,16 +268,16 @@ export default {
             articleList: [],
             showStates: {},
             articleA: {},
-            articleASummary: "The Deepwater Horizon explosion caused a massive oil spill off the coast of Louisiana, leaking over 5,000 barrels of oil per day and severely impacting coastal ecosystems, wildlife, and fisheries. The disaster has prompted emergency declarations in multiple Gulf states and ongoing efforts to contain and mitigate the damage.",
+            articleASummary: "",
             articleB: {},
-            articleBSummary: "Cephalopods, such as octopuses and squids, are intelligent mollusks with three hearts and blue blood, capable of changing color for camouflage and communication​ (Smithsonian Ocean)​​ (Smithsonian Natural History)​. Learn more on the Smithsonian Ocean Portal.",
+            articleBSummary: "",
             articleC: {},
             articleCSummary: "",
             recentArticleViews: [14, 200, 30, 20, 166, 18, 114, 198, 160, 173, 122, 98, 171, 84, 75],
             date2: new Date().toISOString().substr(0, 10),
-            isUserLoggedIn: false, // Assume some logic to check if the user is logged in
-            searchQuery: '', // Add this data property
-            searchResults: [], // Add this data property to store search results
+            isUserLoggedIn: false,
+            searchQuery: '',
+            searchResults: [],
         };
     },
     methods: {
@@ -317,7 +314,7 @@ export default {
         },
         handleSearch() {
             if (this.searchQuery.length > 2) {
-                this.$api.searchByKeyWord({ content: this.searchQuery })
+                this.$api.searchByKeyWord({content: this.searchQuery})
                 .then(data => {
                     this.searchResults = data.data.data; // Store the search results
                 })
@@ -338,8 +335,9 @@ export default {
 
 <style>
 * {
-    /* outline: 1px solid red; */
+//outline: 1px solid red;
 }
+
 .search-results-list {
     position: absolute;
     z-index: 10;
@@ -354,6 +352,7 @@ export default {
     overflow: hidden; /* Ensures the rounded corners stay constant */
     box-shadow: black;
 }
+
 .search-results-title {
     color: dimgrey;
     text-decoration: none; /* Corrected property name */

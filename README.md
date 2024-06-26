@@ -2,7 +2,17 @@
 
 ## Introduction
 
+Oceanopedia is a comprehensive ocean knowledge article management system. It features a robust admin panel with four
+primary sections designed for effective content and user management:
+
 ## Features
+
+- **User Management**: Inspect and manage user accounts, including details and activity logs.
+- **Article Management**: Create, edit, and organize articles with rich text formatting and multimedia support.
+- **Banner Management**: Customize website banners for promotions and announcements.
+- **Search Functionality**: Utilize Elasticsearch for robust and efficient search capabilities across articles.
+- **Microservices Architecture**: Built with Spring Boot and Spring Cloud for scalable and maintainable service management.
+- **Data Storage**: Use MongoDB for flexible and efficient data storage solutions.
 
 ## Technologies Used
 
@@ -39,8 +49,6 @@ Ensure you have the following installed:
 - **Search:** 9021
 - **User:** 9022
 - **Article:** 9023
-- **Statistics:** 9024
-- **Notification:** 9025
 
 #### Databases
 
@@ -69,26 +77,39 @@ cd Oceanopedia
 mvn clean install
 ```
 
+#### Redis Deployment (Mac)
+
+1. Create container
+
+```bash
+docker run -d -p 6379:6380 --name dev_oceanopedia_svc_redis redis:7.2-rc2 --requirepass root
+```
+
 #### MongoDB Deployment (Mac)
 
-1. Create container 
+1. Create container
+
 ```bash
 docker run -d -p 27018:27017 --name dev_oceanopedia_svc_mongodb mongo:4.4.19-rc2 --auth
 ```
 
 2. Enter MongoDB
+
 ```bash
 docker exec -it dev_oceanopedia_svc_mongodb bash
+```
+
+```bash
 mongo
 ```
 
 3. Set authentication
+
 ```bash
 use admin
 db.createUser({ user: "root", pwd: "root", roles: [{ role: "root", db: "admin" }] })
 db.auth("root", "root");
 ```
-
 
 ## Contributing
 
@@ -116,14 +137,13 @@ This project is distributed under the MIT License. See the LICENSE file for more
 
 ## Preview
 
-### Client
-
-<div align="center">
-
-</div>
-
 ### Admin
 
 <div align="center">
-
+  <img width="400" src="https://i.imghippo.com/files/AZZ1O1719410861.jpg" alt="" border="0">
+  <img width="400" src="https://i.imghippo.com/files/wzn8w1719419712.jpg" alt="" border="0">
+  <img width="400" src="https://i.imghippo.com/files/3F84T1719422749.jpg" alt="" border="0">
+  <img width="400" src="https://i.imghippo.com/files/sz39K1719422868.jpg" alt="" border="0">
+  <img width="400" src="https://i.imghippo.com/files/NZUgZ1719423069.jpg" alt="" border="0">
+  <img width="400" src="https://i.imghippo.com/files/z9mjn1719423130.jpg" alt="" border="0">
 </div>
