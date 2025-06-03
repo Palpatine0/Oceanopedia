@@ -7,12 +7,12 @@ primary sections designed for effective content and user management:
 
 ## Features
 
-- **User Management**: Inspect and manage user accounts, including details and activity logs.
-- **Article Management**: Create, edit, and organize articles with rich text formatting and multimedia support.
-- **Banner Management**: Customize website banners for promotions and announcements.
-- **Search Functionality**: Utilize Elasticsearch for robust and efficient search capabilities across articles.
-- **Microservices Architecture**: Built with Spring Boot and Spring Cloud for scalable and maintainable service management.
-- **Data Storage**: Use MongoDB for flexible and efficient data storage solutions.
+- `User Management` : Inspect and manage user accounts, including details and activity logs.
+- `Article Management` : Create, edit, and organize articles with rich text formatting and multimedia support.
+- `Banner Management`  Customize website banners for promotions and announcements.
+- `Search Functionality` : Utilize Elasticsearch for robust and efficient search capabilities across articles.
+- `Microservices Architecture` : Built with Spring Boot and Spring Cloud for scalable and maintainable service management.
+- `Data Storage` : Use MongoDB for flexible and efficient data storage solutions.
 
 ## Technologies Used
 
